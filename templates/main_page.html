@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+    <title>Astana Fund Web site</title>
+</head>
+<body>
+    <div class="frame-box">
+        <header class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="logo-box">
+                        <a href="{% url 'main_page' %}" class="logo-link">
+                           <img src="{% static 'img/logo.png' %}" alt="Логотип">
+                        </a>
+                        <div>
+                            <a href="{% url 'main_page' %}" class="logo-link">
+                                <!-- Десктопная версия -->
+                                <div class="logo-text desktop-logo-text">
+                                    Фонд содействия развитию дружбы народов и<br>
+                                    национальных культур "АСТАНА"
+                                  </div>
+
+                                  <!-- Мобильная версия -->
+                                  <div class="logo-text mobile-logo-text">
+                                    Фонд содействия развитию дружбы
+                                    народов и национальных культур
+                                    "АСТАНА"
+                                  </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-buttons">
+                        <div class="search-wrapper">
+  <a href="#" class="search-button" id="search-button">
+    <i class="fas fa-search"></i>
+  </a>
+
+  <div class="search-container" id="search-container">
+    <input type="text" id="search-input" placeholder="Поиск по сайту..." />
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
+
+                        <a href="#" class="whatsapp-button" id="whatsapp-button">
+                          <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+
+                        <div class="menu-icon" id="menu-icon">
+                          <i class="fa-solid fa-bars"></i>
+                        </div>
+                      </div>
+                </div>
+                <nav class="nav" id="nav-links">
+                <a href="{% url 'about' %}">О ФОНДЕ</a>
+                <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
+                <a href="{% url 'media' %}">СМИ О НАС</a>
+                <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
+                <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
+                <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
+                <a href="#contacts">КОНТАКТЫ</a>
+                </nav>
+            </div>
+        </header>
+        <section class="video-section">
+            <div class="container">
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <video autoplay muted loop>
+                            <source src="{% static 'img/astana.mp4' %}" type="video/mp4">
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <div class="video-overlay">
+                            <div class="overlay-content">
+                                <h2>Сохраняем традиции. Создаём будущее. Объединяем народы.</h2>
+                                <a href="{% url 'help' %}" class="donate-btn">Помочь фонду</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="about-mission">
+            <div class="container">
+                <div class="about-mission__grid">
+                    <article class="about-card">
+                        <h2 class="about-card__title">О фонде</h2>
+                        <div class="about-card__content">
+                            <p>Фонд "Астана" – это общественно-государственная организация, деятельность которой направлена на укрепление межнационального согласия, сохранение и популяризацию культурного наследия народов России и мира. Фонд выступает площадкой для диалога культур, способствуя взаимопониманию и сотрудничеству между различными этническими общинами через организацию просветительских, творческих и патриотических мероприятий.</p>
+                            <a href="{% url 'about' %}" class="about-card__link">Подробнее →</a>
+                        </div>
+                    </article>
+
+                    <article class="mission-card">
+                        <h2 class="mission-card__title">Миссия</h2>
+                        <div class="mission-card__content">
+                            <p>Развитие и поддержка межкультурного диалога, укрепление дружбы между народами через сохранение традиций, популяризацию национального искусства и воспитание уважения к многообразию культур. Фонд содействует реализации проектов, которые объединяют людей разных национальностей, способствуют сохранению их идентичности и в то же время формируют общие ценности гражданского общества.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="volunteer-section">
+            <!-- Узор вынесен за пределы контейнера, но привязан к нему -->
+            <div class="volunteer-pattern">
+                <img src="{% static 'img/pattern-top.png' %}" alt="Декоративный узор">
+            </div>
+
+            <div class="container">
+                <div class="volunteer-content">
+                    <!-- Кружок с картинкой -->
+                    <div class="volunteer-image-circle">
+                        <img src="{% static 'img/astana_volunteer.png' %}" alt="Волонтер">
+                    </div>
+
+                    <!-- Текст и кнопка -->
+                    <div class="volunteer-text">
+                        <p>Присоединяйтесь к нашей команде волонтеров и помогайте создавать мосты между культурами</p>
+                        <a href="#volunteer-form" class="volunteer-btn">Стать волонтером</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Текущие мероприятия -->
+<section class="events-calendar">
+    <div class="container-event">
+        <h2 class="section-title">Календарь мероприятий</h2>
+        <div class="cards-grid">
+            {% for event in current_events %}
+            <article class="card">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                {% else %}
+                    <img src="{% static 'img/default_event.jpg' %}" alt="Мероприятие" class="event-image">
+                {% endif %}
+                <div class="card-stats">
+                    <span class="stat-badge">{{ event.start_date|date:"d E Y" }} в {{ event.start_date|time:"H:i" }}</span>
+                    <span class="status-badge {% if event.is_upcoming %}upcoming{% else %}ongoing{% endif %}">
+                        {% if event.is_upcoming %}Предстоящее{% else %}{% endif %}
+                    </span>
+                </div>
+                <h3 class="card-title">{{ event.title }}</h3>
+                <p class="card-description">{{ event.short_description|truncatechars:100 }}</p>
+                <div class="card-footer">
+                    <a href="{% url 'event_detail_future' event.id %}" class="card-link">Подробнее →</a>
+                    </a>
+                </div>
+            </article>
+            {% empty %}
+            <p class="no-events">Нет предстоящих мероприятий</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Прошедшие мероприятия -->
+<section class="past-events">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Прошедшие мероприятия</h2>
+            <a href="{% url 'event' %}" class="archive-link">Архив всех событий →</a>
+        </div>
+
+        <div class="cards-grid">
+            {% for event in past_events %}
+            <article class="card">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                {% else %}
+                    <img src="{% static 'img/default_event.jpg' %}" alt="Мероприятие" class="event-image">
+                {% endif %}
+                <div class="card-stats">
+                    <span class="stat-badge">{{ event.start_date|date:"d E Y" }}</span>
+                </div>
+                <h3 class="card-title">{{ event.title }}</h3>
+                <p class="card-description">{{ event.short_description|truncatechars:100 }}</p>
+                <div class="card-footer">
+                    <a href="{% url 'event_detail_past' event.id %}" class="card-link">Подробнее →</a>
+                </div>
+            </article>
+            {% empty %}
+            <p class="no-events">Нет прошедших мероприятий</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+        <section class="leadership-section">
+            <div class="container">
+                <h2 class="section-title">Руководство</h2>
+             <div class="leadership-grid">
+                    <div class="leader-card">
+                        <img class="decorative-element" src="{% static 'img/pattern_leader.png' %}" alt="Декор">
+                        <img src="{% static 'img/УТЕШОВА ЖАРКЫН.jpg' %}" alt="Президент">
+                        <p>Президент фонда</p>
+                        <h4>Утешова Жаркын Конырбаевна</h4>
+                        <p class="bio">Член Союз Журналистов Республики Казахстана, Член Муждународного Общества Писателей</p>
+                        <p class="contact-info">
+                            +7 (963) 711-56-56
+                        </p>
+                        <p class="contact-info">
+                            zharkyn-1@yandex.ru,<br> astana_f@mail.ru
+                        </p>
+                    </div>
+                    <div class="leader-card">
+                        <img class="decorative-element" src="{% static 'img/pattern_leader.png' %}" alt="Декор">
+                        <img src="{% static 'img/Фото РИМ-15.04.25..jpg' %}" alt="Директор">
+                        <p>Директор</p>
+                        <h4>Мынжасаров Рахымбай Исатаевич</h4>
+                        <p class="bio">Член Комиссии по науке и образованию Совета по делам национальностей при Правительстве Москвы</p>
+                        <p class="contact-info">
+                            +7 (499) 267-02-23, +7 (926) 222-28-50
+                        </p>
+                        <p class="contact-info">
+                            Rahimbai@yandex.ru
+                        </p>
+                    </div>
+                    <div class="leader-card">
+                        <img class="decorative-element" src="{% static 'img/pattern_leader.png' %}" alt="Декор">
+                        <img src="{% static 'img/Роман Станиславович.png' %}" alt="Председатель правления">
+                        <p>Председатель правления</p>
+                        <h4>Болховитин Роман Станиславович</h4>
+                        <p class="bio">Советник Российской Федерации 1 класса</p>
+                        <p class="contact-info">
+                            +7 (929) 568-48-28
+                        </p>
+                        <p class="contact-info">
+                            hrizaor@mail.ru
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sponsors" id="partners">
+            <div class="container">
+                <h2 class="sponsors-tittle">Партнеры</h2>
+                <div class="sponsors-logos">
+                    <div class="sponsor">
+                        <img src="{% static 'img/partner1.png' %}" alt="Московский дом общественных организаций">
+                        <a href="{% static 'doc/Соглашение с МДОО.pdf' %}" class="contract-link" target="_blank">
+                            📄 Договор о сотрудничестве
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="site-footer" id="contacts">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
+                        <p class="footer-description">Фонд содействия развитию дружбы народов и<br> национальных культур "Астана"</p>
+                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
+                    </div>
+
+                    <div class="footer-contacts">
+                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
+                        <ul class="contact-list">
+                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая д. 41, к. 2</li>
+                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
+                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social">
+                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Whats app">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+
+                        <div class="feedback-section">
+                    <a href="{% url 'feedback' %}" class="feedback-button">
+                        <i class="fas fa-envelope"></i> Обратная связь
+                    </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        <p>© Фонд Астана 2025</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'js/menu.js' %}" defer></script>
+    <script src="{% static 'js/search.js' %}" defer></script>
+</body>
+</html>

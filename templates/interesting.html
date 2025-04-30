@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/interesting.css' %}">
+    <title>Astana Fund Web site</title>
+</head>
+<body>
+    <div class="frame-box">
+        <header class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="logo-box">
+                        <a href="{% url 'main_page' %}" class="logo-link">
+                            <img src="{% static 'img/logo.png' %}" alt="Логотип">
+                        </a>
+                        <div>
+                            <a href="{% url 'main_page' %}" class="logo-link">
+                                <!-- Десктопная версия -->
+                                <div class="logo-text desktop-logo-text">
+                                    Фонд содействия развитию дружбы народов и<br>
+                                    национальных культур "АСТАНА"
+                                  </div>
+
+                                  <!-- Мобильная версия -->
+                                  <div class="logo-text mobile-logo-text">
+                                    Фонд содействия развитию дружбы
+                                    народов и национальных культур
+                                    "АСТАНА"
+                                  </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-buttons">
+                        <div class="search-wrapper">
+                          <a href="#" class="search-button" id="search-button">
+                            <i class="fas fa-search"></i>
+                          </a>
+
+                          <div class="search-container" id="search-container">
+                            <input type="text" id="search-input" placeholder="Поиск по сайту..." />
+                          </div>
+                        </div>
+
+                        <a href="#" class="whatsapp-button" id="whatsapp-button">
+                          <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+
+                        <div class="menu-icon" id="menu-icon">
+                          <i class="fa-solid fa-bars"></i>
+                        </div>
+                      </div>
+                </div>
+                <nav class="nav" id="nav-links">
+                <a href="{% url 'about' %}">О ФОНДЕ</a>
+                <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
+                <a href="{% url 'media' %}">СМИ О НАС</a>
+                <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
+                <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
+                <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
+                <a href="#contacts">КОНТАКТЫ</a>
+                </nav>
+            </div>
+        </header>
+<body>
+    <div class="frame-box">
+        <main class="interesting-section">
+            <div class="container">
+                <h1 class="page-title">Интересное</h1>
+                <p class="section-subtitle">Откройте для себя богатство культур через видео, музыку и статьи</p>
+
+                <!-- Вкладки -->
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="video">Видео</button>
+                    <button class="tab-button" data-tab="music">Музыка</button>
+                    <button class="tab-button" data-tab="articles">Статьи</button>
+                </div>
+
+                <!-- Содержимое вкладок -->
+                <div id="video" class="tab-content active">
+                    <div class="resources-grid">
+                        {% for video in videos %}
+                        <article class="resource-card" data-id="{{ video.id }}">
+                            <div class="resource-image">
+                                {% if video.thumbnail %}
+                                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
+                                {% else %}
+                                <img src="{% static 'img/default-video.jpg' %}" alt="{{ video.title }}">
+                                {% endif %}
+                                <span class="resource-type video-type">Видео</span>
+                                {% if video.duration %}
+                                <span class="duration-badge">{{ video.duration|time:"H:i:s" }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="resource-content">
+                                <h3 class="resource-title">{{ video.title }}</h3>
+                                <p class="resource-description">{{ video.short_description }}</p>
+                                <button class="resource-link play-video"
+                                    data-video="{% if video.video_file %}{{ video.video_file.url }}{% else %}{{ video.youtube_url }}{% endif %}">
+                                    Смотреть <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div id="music" class="tab-content">
+                    <div class="resources-grid">
+                        {% for music in music_list %}
+                        <article class="resource-card" data-id="{{ music.id }}">
+                            <div class="resource-image">
+                                {% if music.thumbnail %}
+                                <img src="{{ music.thumbnail.url }}" alt="{{ music.title }}">
+                                {% else %}
+                                <img src="{% static 'img/default-music.jpg' %}" alt="{{ music.title }}">
+                                {% endif %}
+                                <span class="resource-type music-type">Музыка</span>
+                                {% if music.duration %}
+                                <span class="duration-badge">{{ music.duration|time:"i:s" }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="resource-content">
+                                <h3 class="resource-title">{{ music.title }}</h3>
+                                {% if music.artist %}
+                                <p class="resource-artist">{{ music.artist }}</p>
+                                {% endif %}
+                                <p class="resource-description">{{ music.short_description }}</p>
+                                <button class="resource-link play-audio"
+    data-audio="{{ music.audio_file.url }}"
+    data-title="{{ music.title }}"
+    data-artist="{{ music.artist }}"
+    data-description="{{ music.short_description }}"
+    {% if music.thumbnail %}
+    data-thumbnail="{{ music.thumbnail.url }}"
+    {% endif %}
+>
+    Слушать <i class="fas fa-arrow-right"></i>
+</button>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div id="articles" class="tab-content">
+                    <div class="resources-grid">
+                        {% for article in articles %}
+                        <article class="resource-card">
+                            <div class="resource-image">
+                                {% if article.thumbnail %}
+                                <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+                                {% else %}
+                                <img src="{% static 'img/default-article.jpg' %}" alt="{{ article.title }}">
+                                {% endif %}
+                                <span class="resource-type article-type">Статья</span>
+                                <span class="reading-time">{{ article.reading_time }} мин чтения</span>
+                            </div>
+                            <div class="resource-content">
+                                <h3 class="resource-title">{{ article.title }}</h3>
+                                <p class="resource-author">{{ article.author }}</p>
+                                <p class="resource-description">{{ article.short_description }}</p>
+                                <a href="{{ article.get_absolute_url }}" class="resource-link">
+                                    Читать <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer" id="contacts">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
+                        <p class="footer-description">Фонд содействия развитию дружбы народов и<br> национальных культур "Астана"</p>
+                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
+                    </div>
+
+                    <div class="footer-contacts">
+                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
+                        <ul class="contact-list">
+                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая д. 41, к. 2</li>
+                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
+                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social">
+                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Whats app">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+
+                        <div class="feedback-section">
+                            <button class="feedback-button" onclick="window.location.href='/feedback.html'">
+                                <i class="fas fa-envelope"></i> Обратная связь
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        <p>© Фонд Астана 2025</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+<!-- Видео модальное окно -->
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="video-player-container">
+            <!-- Контейнер будет заполняться динамически -->
+        </div>
+    </div>
+</div>
+
+<!-- Аудио модальное окно -->
+<div id="audioModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="audioThumbnail" src="" alt="" style="display:none;">
+        <h2 id="audioTitle"></h2>
+        <p id="audioArtist"></p>
+        <p id="audioDescription"></p>
+        <audio id="audioPlayer" controls></audio>
+    </div>
+</div>
+    <script src="{% static 'js/menu.js' %}" defer></script>
+    <script src="{% static 'js/search.js' %}" defer></script>
+    <script src="{% static 'js/interesting-tabs.js' %}" defer></script>
+</body>
+</html>

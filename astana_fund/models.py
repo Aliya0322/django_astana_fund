@@ -6,10 +6,6 @@ from django.core.validators import FileExtensionValidator
 
 
 class Event(models.Model):
-    STATUS_CHOICES = [
-        ('current', 'Предстоящее'),
-        ('past', 'Прошедшее'),
-    ]
 
     title = models.CharField(
         max_length=255,
@@ -46,15 +42,11 @@ class Event(models.Model):
     )
     image = models.ImageField(
         upload_to='events/',
-        verbose_name='Изображение',
+        verbose_name='Изображение-постер',
         null=True,
         blank=True
     )
-    status = models.CharField(
-        max_length=10,
-        choices=STATUS_CHOICES,
-        verbose_name='Статус мероприятия'
-    )
+
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата создания'
@@ -68,12 +60,30 @@ class Event(models.Model):
         verbose_name='Активно'
     )
 
+    guests_count = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        default=100,
+        verbose_name='Количество гостей'
+    )
+    cultures_count = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        default=1,
+        verbose_name='Количество представленных культур'
+    )
+    performances_count = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        default=7,
+        verbose_name='Количество выступлений'
+    )
+
     class Meta:
         verbose_name = 'Мероприятие'
         verbose_name_plural = 'Мероприятия'
         ordering = ['-start_date']
         indexes = [
-            models.Index(fields=['status']),
             models.Index(fields=['start_date', 'end_date']),
             models.Index(fields=['is_active']),
         ]
@@ -82,14 +92,52 @@ class Event(models.Model):
         return self.title
 
     @property
-    def is_current(self):
-        """Проверяет, является ли мероприятие текущим (предстоящим)"""
-        return self.status == 'current'
+    def status(self):
+        now = timezone.now()
+        if self.start_date > now:
+            return 'upcoming'
+        elif self.end_date and now > self.end_date:
+            return 'past'
+        elif self.start_date <= now <= (self.end_date or now):
+            return 'ongoing'
+        return 'past'
 
     @property
-    def is_past(self):
-        """Проверяет, является ли мероприятие прошедшим"""
-        return self.status == 'past'
+    def status_display(self):
+        status_map = {
+            'upcoming': 'Предстоящее',
+            'ongoing': 'Текущее',
+            'past': 'Прошедшее'
+        }
+        return status_map.get(self.status, 'Неизвестно')
+
+    @property
+    def category(self):
+        return "current" if self.is_upcoming else "past"
+
+class EventImage(models.Model):
+    event = models.ForeignKey(
+        Event,
+        related_name='gallery_images',
+        on_delete=models.CASCADE,
+        verbose_name='Мероприятие'
+    )
+    image = models.ImageField(
+        upload_to='event_gallery/',
+        verbose_name='Изображение'
+    )
+    caption = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name='Подпись'
+    )
+
+    class Meta:
+        verbose_name = 'Фотография мероприятия'
+        verbose_name_plural = 'Фотографии мероприятия'
+
+    def __str__(self):
+        return f"Фото для мероприятия: {self.event.title}"
 
 class MediaPublication(models.Model):
     PUBLICATION_TYPE_CHOICES = [

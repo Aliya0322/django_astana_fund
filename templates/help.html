@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/help.css' %}">
+    <title>Фонд Астана - Помощь фонду</title>
+</head>
+<body>
+    <div class="frame-box">
+        <header class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="logo-box">
+                        <a href="{% url 'main_page' %}" class="logo-link">
+                            <img src="{% static 'img/logo.png' %}" alt="Логотип">
+                        </a>
+                        <div>
+                            <a href="{% url 'main_page' %}" class="logo-link">
+                                <div class="logo-text desktop-logo-text">
+                                    Фонд содействия развитию дружбы народов и<br>
+                                    национальных культур "АСТАНА"
+                                </div>
+                                <div class="logo-text mobile-logo-text">
+                                    Фонд содействия развитию дружбы
+                                    народов и национальных культур
+                                    "АСТАНА"
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-buttons">
+                        <div class="search-wrapper">
+                            <a href="#" class="search-button" id="search-button">
+                                <i class="fas fa-search"></i>
+                            </a>
+                            <div class="search-container" id="search-container">
+                                <input type="text" id="search-input" placeholder="Поиск по сайту..." />
+                            </div>
+                        </div>
+                        <a href="#" class="whatsapp-button" id="whatsapp-button">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <div class="menu-icon" id="menu-icon">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+                <nav class="nav" id="nav-links">
+                <a href="{% url 'about' %}">О ФОНДЕ</a>
+                <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
+                <a href="{% url 'media' %}">СМИ О НАС</a>
+                <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
+                <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
+                <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
+                <a href="#contacts">КОНТАКТЫ</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Секция помощи фонду -->
+        <section class="help-section">
+            <div class="container">
+                <h1 class="section-title">Помощь фонду</h1>
+                <p class="section-subtitle">Поддержите наши инициативы и станьте частью команды</p>
+
+                <div class="help-cards">
+                    <!-- Финансовая помощь -->
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="help-title">Финансовая помощь</h3>
+                        <p class="help-description">Ваши пожертвования помогают реализовывать наши проекты</p>
+
+                        <div class="donation-methods">
+                            <div class="donation-method">
+                                <h4>Банковский перевод:</h4>
+                                <ul class="bank-details">
+                                    <li><strong>БИК:</strong> 044525225</li>
+                                    <li><strong>К/С:</strong> 30101810400000000225</li>
+                                    <li><strong>Расчет. счет (в рублях):</strong> 40703810038720000125</li>
+                                    <li><strong>Система налогообложения:</strong> УСНО 6%</li>
+                                    <li><strong>Банк:</strong> ПАО "Сбербанк" г. Москва</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Волонтерство -->
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="help-title">Волонтерство</h3>
+                        <p class="help-description">Присоединяйтесь к нашей команде волонтеров</p>
+
+                        <ul class="volunteer-steps">
+                            <li><i class="fas fa-file-alt"></i> Заполните анкету на нашем сайте</li>
+                            <li><i class="fas fa-laptop"></i> Пройдите ознакомительный вебинар</li>
+                            <li><i class="fas fa-tasks"></i> Выберите направление работы</li>
+                            <li><i class="fas fa-rocket"></i> Начните участвовать в проектах!</li>
+                        </ul>
+
+                        <button class="help-button">Стать волонтером</button>
+                    </div>
+
+                    <!-- Другие способы -->
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="help-title">Другие способы поддержки</h3>
+                        <p class="help-description">Есть много способов помочь нашему фонду</p>
+
+                        <ul class="other-help">
+                            <li><strong><i class="fas fa-handshake"></i> Связи:</strong> помогите с партнерствами и информационной поддержкой</li>
+                            <li><strong><i class="fas fa-truck"></i> Транспорт:</strong> помощь в организации перевозок для мероприятий</li>
+                            <li><strong><i class="fas fa-graduation-cap"></i> Экспертиза:</strong> поделитесь профессиональными знаниями</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="help-contact">
+                    <p>По всем вопросам помощи фонду:</p>
+                    <a href="mailto:help@astana-fund.kz" class="contact-email">
+                        <i class="fas fa-envelope"></i> hrizaor@mail.ru
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer" id="contacts">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
+                        <p class="footer-description">Фонд содействия развитию дружбы народов и национальных культур "Астана"</p>
+                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
+                    </div>
+
+                    <div class="footer-contacts">
+                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
+                        <ul class="contact-list">
+                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая, д. 41, к. 2</li>
+                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
+                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social">
+                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Whats app">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+
+                        <div class="feedback-section">
+                            <button class="feedback-button" onclick="window.location.href='/feedback.html'">
+                                <i class="fas fa-envelope"></i> Обратная связь
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        <p>© Фонд Астана 2025</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="menu.js" defer></script>
+    <script src="search.js" defer></script>
+</body>
+</html>
