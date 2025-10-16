@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'QazFont';
+    src: url('/static/fonts/Qaz-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Add your search result styles here */
