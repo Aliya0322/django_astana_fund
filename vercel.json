@@ -1,17 +1,19 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "api/index.py",
+      "src": "api/vercel.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/index.py"
+      "dest": "/api/vercel.py"
     }
   ],
   "env": {
-    "DJANGO_SETTINGS_MODULE": "server.settings_vercel"
+    "DJANGO_SETTINGS_MODULE": "server.settings_vercel",
+    "PYTHONUNBUFFERED": "1"
   }
 }
