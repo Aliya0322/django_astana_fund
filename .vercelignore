@@ -62,3 +62,4 @@ db.sqlite3
 
 # Static files (will be collected by WhiteNoise)
 staticfiles/
+

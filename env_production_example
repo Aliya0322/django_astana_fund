@@ -1,0 +1,25 @@
+# Production Environment Variables for PythonAnywhere
+# Скопируйте этот файл в .env на PythonAnywhere и заполните значения
+
+# Django settings
+DJANGO_SECRET_KEY=your-secret-key-here-change-this-in-production
+DJANGO_DEBUG=False
+
+# PythonAnywhere domain (замените на ваш домен)
+PYTHONANYWHERE_DOMAIN=yourusername.pythonanywhere.com
+
+# Database settings (MySQL на PythonAnywhere)
+DB_NAME=your_database_name
+DB_USER=your_username
+DB_PASSWORD=your_database_password
+DB_HOST=your_username.mysql.pythonanywhere-services.com
+DB_PORT=3306
+
+# Email settings
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-app-password
+DEFAULT_FROM_EMAIL=your-email@gmail.com
+CONTACT_EMAIL=contact@yourdomain.com
