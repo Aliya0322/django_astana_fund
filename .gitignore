@@ -175,3 +175,15 @@ cython_debug/
 
 
 .idea
+
+# Media files - большие файлы не должны быть в Git
+media/interesting/videos/*.mp4
+media/interesting/videos/*.mov
+media/interesting/videos/*.avi
+media/interesting/music/*.mp3
+media/interesting/music/*.wav
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
