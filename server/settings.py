@@ -199,7 +199,8 @@ STORAGES = {
     },
 }
 
-# For serverless environments, use finders instead of collectstatic
+# Allow serving even if manifest missing (prevents 500s). Prefer running collectstatic in build.
+WHITENOISE_MANIFEST_STRICT = False
 WHITENOISE_USE_FINDERS = True
 
 # Default primary key field type
