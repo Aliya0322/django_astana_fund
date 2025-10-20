@@ -195,16 +195,14 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # Используем базовый WhiteNoise storage без манифеста и компрессии
-        # чтобы избежать ошибок если collectstatic не запустился
-        "BACKEND": "whitenoise.storage.WhiteNoiseStaticFilesStorage",
+        # Используем CompressedStaticFilesStorage без манифеста (только компрессия)
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
 # WhiteNoise settings - работает напрямую с файлами без манифеста
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = True if DEBUG else False
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
