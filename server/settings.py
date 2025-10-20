@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise',  # Для обслуживания статических файлов в продакшене
+    'whitenoise.runserver_nostatic',  # Для корректной работы в development
 ]
 
 MIDDLEWARE = [
@@ -195,13 +195,16 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # Используем базовый WhiteNoise storage без манифеста и компрессии
+        # чтобы избежать ошибок если collectstatic не запустился
+        "BACKEND": "whitenoise.storage.WhiteNoiseStaticFilesStorage",
     },
 }
 
-# Allow serving even if manifest missing (prevents 500s). Prefer running collectstatic in build.
-WHITENOISE_MANIFEST_STRICT = False
+# WhiteNoise settings - работает напрямую с файлами без манифеста
 WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True if DEBUG else False
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
