@@ -31,17 +31,27 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-dev-key-change-in-p
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    "127.0.0.1", 
-    "localhost", 
-    ".vercel.app",
+    "127.0.0.1",
+    "localhost",
     ".pythonanywhere.com",  # PythonAnywhere домены
     os.getenv('PYTHONANYWHERE_DOMAIN', ''),  # Ваш домен на PythonAnywhere
 ]
+
+# Render.com: add dynamic hostname if provided
+RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS += [RENDER_EXTERNAL_HOSTNAME, ".onrender.com"]
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.vercel.app",
     "https://*.pythonanywhere.com",
     f"https://{os.getenv('PYTHONANYWHERE_DOMAIN', '')}",
 ]
+
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS += [
+        f"https://{RENDER_EXTERNAL_HOSTNAME}",
+        "https://*.onrender.com",
+    ]
 
 
 # Application definition

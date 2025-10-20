@@ -35,7 +35,6 @@
 
 ### Инфраструктура:
 - **Docker** - контейнеризация (опционально)
-- **Vercel** - деплой для serverless
 - **PythonAnywhere** - хостинг для продакшена
 - **Git** - система контроля версий
 
@@ -147,7 +146,6 @@ django_astana_fund/
 │   ├── img/            # Изображения
 │   └── fonts/          # Шрифты
 ├── media/              # Загружаемые пользователями файлы
-├── api/                # API для Vercel
 ├── requirements.txt    # Зависимости Python
 └── manage.py          # Управляющий скрипт Django
 ```
@@ -196,18 +194,6 @@ http://127.0.0.1:8000/admin/
 - **Галерея** - управление фотографиями мероприятий
 
 ## Развертывание
-
-### Vercel (Serverless)
-
-Проект готов к развертыванию на Vercel:
-
-```bash
-# Установка Vercel CLI
-npm i -g vercel
-
-# Деплой
-vercel
-```
 
 ### PythonAnywhere
 
