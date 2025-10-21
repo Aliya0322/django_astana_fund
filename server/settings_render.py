@@ -151,12 +151,12 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.StaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
 # WhiteNoise settings
-WHITENOISE_USE_FINDERS = True  # Включаем для StaticFilesStorage
+WHITENOISE_USE_FINDERS = False  # Отключаем для production
 WHITENOISE_AUTOREFRESH = False  # Отключаем для production
 
 # Media files configuration - use temp directory for Render.com
