@@ -1,71 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
-    <title>Astana Fund Web site</title>
-</head>
-<body>
-    <div class="frame-box">
-        <header class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo-box">
-                        <a href="{% url 'main_page' %}" class="logo-link">
-                           <img src="{% static 'img/logo.png' %}" alt="Логотип">
-                        </a>
-                        <div>
-                            <a href="{% url 'main_page' %}" class="logo-link">
-                                <!-- Десктопная версия -->
-                                <div class="logo-text desktop-logo-text">
-                                    Фонд содействия развитию дружбы народов и<br>
-                                    национальных культур "АСТАНА"
-                                  </div>
+{% extends 'base.html' %}
+{% load static %}
 
-                                  <!-- Мобильная версия -->
-                                  <div class="logo-text mobile-logo-text">
-                                    Фонд содействия развитию дружбы
-                                    народов и национальных культур
-                                    "АСТАНА"
-                                  </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="social-buttons">
-                        <div class="search-wrapper">
-  <a href="#" class="search-button" id="search-button">
-    <i class="fas fa-search"></i>
-  </a>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+{% endblock %}
 
-  <div class="search-container" id="search-container">
-    <input type="text" id="search-input" placeholder="Поиск по сайту..." />
-    <div id="search-results" class="search-results"></div>
-  </div>
-</div>
+{% block title %}Главная - Фонд Астана{% endblock %}
 
-                        <a href="#" class="whatsapp-button" id="whatsapp-button">
-                          <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-
-                        <div class="menu-icon" id="menu-icon">
-                          <i class="fa-solid fa-bars"></i>
-                        </div>
-                      </div>
-                </div>
-                <nav class="nav" id="nav-links">
-                <a href="{% url 'about' %}">О ФОНДЕ</a>
-                <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
-                <a href="{% url 'media' %}">СМИ О НАС</a>
-                <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
-                <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
-                <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
-                <a href="#contacts">КОНТАКТЫ</a>
-                </nav>
-            </div>
-        </header>
+{% block content %}
         <section class="video-section">
             <div class="container">
                 <div class="video-wrapper">
@@ -77,7 +19,7 @@
                         <div class="video-overlay">
                             <div class="overlay-content">
                                 <h2>Сохраняем традиции. Создаём будущее. Объединяем народы.</h2>
-                                <a href="{% url 'help' %}" class="donate-btn">Помочь фонду</a>
+                                <a href="/help/" class="donate-btn">Помочь фонду</a>
                             </div>
                         </div>
                     </div>
@@ -91,7 +33,7 @@
                         <h2 class="about-card__title">О фонде</h2>
                         <div class="about-card__content">
                             <p>Фонд "Астана" – это общественно-государственная организация, деятельность которой направлена на укрепление межнационального согласия, сохранение и популяризацию культурного наследия народов России и мира. Фонд выступает площадкой для диалога культур, способствуя взаимопониманию и сотрудничеству между различными этническими общинами через организацию просветительских, творческих и патриотических мероприятий.</p>
-                            <a href="{% url 'about' %}" class="about-card__link">Подробнее →</a>
+                            <a href="{% url 'about' %}" class="about-card__link">Подробнее ›</a>
                         </div>
                     </article>
 
@@ -121,7 +63,7 @@
                     <!-- Текст и кнопка -->
                     <div class="volunteer-text">
                         <p>Присоединяйтесь к нашей команде волонтеров и помогайте создавать мосты между культурами</p>
-                        <a href="#volunteer-form" class="volunteer-btn">Стать волонтером</a>
+                        <a href="/help/" class="volunteer-btn">Стать волонтером</a>
                     </div>
                 </div>
             </div>
@@ -131,29 +73,44 @@
     <div class="container-event">
         <h2 class="section-title">Календарь мероприятий</h2>
         <div class="cards-grid">
-            {% for event in current_events %}
+            <!-- Мероприятие 1 -->
+                <article class="card">
+                    <img src="{% static 'img/events/event2.jpg' %}" alt="Фестиваль культур" class="event-image">
+                    <div class="card-stats">
+                        <span class="stat-badge">15 ноября 2025 в 18:00</span>
+                    </div>
+                    <h3 class="card-title">Фестиваль культур народов мира</h3>
+                    <p class="card-description">Грандиозное мероприятие, посвященное единству и многообразию культур. Выступления творческих коллективов, национальная кухня...</p>
+                    <div class="card-footer">
+                        <a href="/event/future/1/" class="card-link">Подробнее ›</a>
+                    </div>
+                </article>
+
+            <!-- Мероприятие 2 -->
             <article class="card">
-                {% if event.image %}
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
-                {% else %}
-                    <img src="{% static 'img/default_event.jpg' %}" alt="Мероприятие" class="event-image">
-                {% endif %}
+                <img src="{% static 'img/events/event2.jpg' %}" alt="Мастер-класс" class="event-image">
                 <div class="card-stats">
-                    <span class="stat-badge">{{ event.start_date|date:"d E Y" }} в {{ event.start_date|time:"H:i" }}</span>
-                    <span class="status-badge {% if event.is_upcoming %}upcoming{% else %}ongoing{% endif %}">
-                        {% if event.is_upcoming %}Предстоящее{% else %}{% endif %}
-                    </span>
+                    <span class="stat-badge">20 ноября 2025 в 15:00</span>
                 </div>
-                <h3 class="card-title">{{ event.title }}</h3>
-                <p class="card-description">{{ event.short_description|truncatechars:100 }}</p>
+                <h3 class="card-title">Мастер-класс по казахским ремёслам</h3>
+                <p class="card-description">Приглашаем на уникальный мастер-класс по традиционным казахским ремёслам. Научитесь создавать национальные украшения...</p>
                 <div class="card-footer">
-                    <a href="{% url 'event_detail_future' event.id %}" class="card-link">Подробнее →</a>
-                    </a>
+                    <a href="/event/future/2/" class="card-link">Подробнее ›</a>
                 </div>
             </article>
-            {% empty %}
-            <p class="no-events">Нет предстоящих мероприятий</p>
-            {% endfor %}
+
+            <!-- Мероприятие 3 -->
+            <article class="card">
+                <img src="{% static 'img/events/event2.jpg' %}" alt="Концерт" class="event-image">
+                <div class="card-stats">
+                    <span class="stat-badge">25 ноября 2025 в 19:00</span>
+                </div>
+                <h3 class="card-title">Концерт "Голоса степей"</h3>
+                <p class="card-description">Вечер казахской музыки и поэзии. Выступления народных артистов, исполнение традиционных кюев на домбре...</p>
+                <div class="card-footer">
+                    <a href="/event/future/3/" class="card-link">Подробнее ›</a>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -163,29 +120,48 @@
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Прошедшие мероприятия</h2>
-            <a href="{% url 'event' %}" class="archive-link">Архив всех событий →</a>
+            <a href="/event/" class="archive-link">Архив всех событий ›</a>
         </div>
 
         <div class="cards-grid">
-            {% for event in past_events %}
+                <!-- Прошедшее мероприятие 1 -->
+                <article class="card">
+                    <img src="{% static 'img/events/event2.jpg' %}" alt="Наурыз" class="event-image">
+                    <div class="card-stats">
+                        <span class="stat-badge">21 марта 2025</span>
+                    </div>
+                    <h3 class="card-title">Празднование Наурыз</h3>
+                    <p class="card-description">Традиционное празднование казахского Нового года. Более 500 гостей, национальные игры, конкурсы, угощения...</p>
+                    <div class="card-footer">
+                        <a href="/event/past/1/" class="card-link">Подробнее ›</a>
+                    </div>
+                </article>
+
+            <!-- Прошедшее мероприятие 2 -->
             <article class="card">
-                {% if event.image %}
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
-                {% else %}
-                    <img src="{% static 'img/default_event.jpg' %}" alt="Мероприятие" class="event-image">
-                {% endif %}
+                <img src="{% static 'img/events/event2.jpg' %}" alt="Выставка" class="event-image">
                 <div class="card-stats">
-                    <span class="stat-badge">{{ event.start_date|date:"d E Y" }}</span>
+                    <span class="stat-badge">10 сентября 2025</span>
                 </div>
-                <h3 class="card-title">{{ event.title }}</h3>
-                <p class="card-description">{{ event.short_description|truncatechars:100 }}</p>
+                <h3 class="card-title">Выставка "Казахское искусство"</h3>
+                <p class="card-description">Уникальная выставка работ современных казахских художников. Посетило более 1000 человек...</p>
                 <div class="card-footer">
-                    <a href="{% url 'event_detail_past' event.id %}" class="card-link">Подробнее →</a>
+                    <a href="/event/past/2/" class="card-link">Подробнее ›</a>
                 </div>
             </article>
-            {% empty %}
-            <p class="no-events">Нет прошедших мероприятий</p>
-            {% endfor %}
+
+            <!-- Прошедшее мероприятие 3 -->
+            <article class="card">
+                <img src="{% static 'img/events/event2.jpg' %}" alt="Конференция" class="event-image">
+                <div class="card-stats">
+                    <span class="stat-badge">5 октября 2025</span>
+                </div>
+                <h3 class="card-title">Конференция "Межкультурный диалог"</h3>
+                <p class="card-description">Международная конференция с участием представителей 15 стран. Обсуждение важных вопросов культурного обмена...</p>
+                <div class="card-footer">
+                    <a href="/event/past/3/" class="card-link">Подробнее ›</a>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -204,19 +180,6 @@
                         </p>
                         <p class="contact-info">
                             zharkyn-1@yandex.ru,<br> astana_f@mail.ru
-                        </p>
-                    </div>
-                    <div class="leader-card">
-                        <img class="decorative-element" src="{% static 'img/pattern_leader.png' %}" alt="Декор">
-                        <img src="{% static 'img/Фото РИМ-15.04.25..jpg' %}" alt="Директор">
-                        <p>Директор</p>
-                        <h4>Мынжасаров Рахымбай Исатаевич</h4>
-                        <p class="bio">Член Комиссии по науке и образованию Совета по делам национальностей при Правительстве Москвы</p>
-                        <p class="contact-info">
-                            +7 (499) 267-02-23, +7 (926) 222-28-50
-                        </p>
-                        <p class="contact-info">
-                            Rahimbai@yandex.ru
                         </p>
                     </div>
                     <div class="leader-card">
@@ -248,49 +211,4 @@
                 </div>
             </div>
         </section>
-        <footer class="site-footer" id="contacts">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-main">
-                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
-                        <p class="footer-description">Фонд содействия развитию дружбы народов и<br> национальных культур "Астана"</p>
-                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
-                    </div>
-
-                    <div class="footer-contacts">
-                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
-                        <ul class="contact-list">
-                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая д. 41, к. 2</li>
-                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
-                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-social">
-                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
-                        <div class="social-links">
-                            <a href="#" class="social-link" aria-label="Whats app">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-                        </div>
-
-                        <div class="feedback-section">
-                    <a href="{% url 'feedback' %}" class="feedback-button">
-                        <i class="fas fa-envelope"></i> Обратная связь
-                    </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        <p>© Фонд Астана 2025</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <script src="{% static 'js/menu.js' %}" defer></script>
-    <script src="{% static 'js/search.js' %}" defer></script>
-</body>
-</html>
+{% endblock %}

@@ -1,151 +1,50 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/projects.css' %}">
-    <title>Фонд Астана - Наши проекты</title>
-</head>
-<body>
-    <div class="frame-box">
-        <header class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo-box">
-                        <a href="{% url 'main_page' %}" class="logo-link">
-                            <img src="{% static 'img/logo.png' %}" alt="Логотип">
-                        </a>
-                        <div>
-                            <a href="{% url 'main_page' %}" class="logo-link">
-                                <div class="logo-text desktop-logo-text">
-                                    Фонд содействия развитию дружбы народов и<br>
-                                    национальных культур "АСТАНА"
-                                </div>
-                                <div class="logo-text mobile-logo-text">
-                                    Фонд содействия развитию дружбы
-                                    народов и национальных культур
-                                    "АСТАНА"
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="social-buttons">
-                        <div class="search-wrapper">
-                            <a href="#" class="search-button" id="search-button">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <div class="search-container" id="search-container">
-                                <input type="text" id="search-input" placeholder="Поиск по сайту..." />
-                            </div>
-                        </div>
-                        <a href="#" class="whatsapp-button" id="whatsapp-button">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                        <div class="menu-icon" id="menu-icon">
-                            <i class="fa-solid fa-bars"></i>
-                        </div>
-                    </div>
-                </div>
-                <nav class="nav" id="nav-links">
-                <a href="{% url 'about' %}">О ФОНДЕ</a>
-                <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
-                <a href="{% url 'media' %}">СМИ О НАС</a>
-                <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
-                <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
-                <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
-                <a href="#contacts">КОНТАКТЫ</a>
-                </nav>
-            </div>
-        </header>
+{% extends 'base.html' %}
+{% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/projects.css' %}">
+{% endblock %}
+
+{% block title %}Наши проекты - Фонд Астана{% endblock %}
+
+{% block content %}
         <!-- Секция с анонсами проектов -->
         <section class="projects-section">
             <div class="container">
                 <h1 class="section-title">Наши проекты</h1>
                 <p class="section-subtitle">Программы и инициативы фонда по укреплению межнационального согласия</p>
 
-                <div class="projects-filter">
-                    <button class="filter-btn active" data-filter="all">Все проекты</button>
-                    <button class="filter-btn" data-filter="current">Текущие</button>
-                    <button class="filter-btn" data-filter="completed">Завершенные</button>
-                    <button class="filter-btn" data-filter="permanent">Постоянные</button>
-                </div>
-
                 <div class="projects-grid">
-                    {% for project in projects %}
-                    <article class="project-card" data-category="{{ project.status }}">
+                    <!-- Проект 1: Культурный обмен -->
+                    <article class="project-card">
                         <div class="project-image">
-                            {% if project.main_image %}
-                            <img src="{{ project.main_image.url }}" alt="{{ project.title }}">
-                            {% else %}
-                            <img src="{% static 'img/projects/default.jpg' %}" alt="{{ project.title }}">
-                            {% endif %}
-                            <span class="project-status {{ project.status }}">{{ project.status_label }}</span>
+                            <img src="{% static 'img/events/photo_2025-03-02_15-13-24.jpg' %}" alt="Культурный обмен и национальные традиции">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">{{ project.title }}</h3>
+                            <h3 class="project-title">Культурный обмен и национальные традиции</h3>
                             <div class="project-meta">
-                                <span><i class="far fa-calendar-alt"></i> {{ project.duration }}</span>
-                                <span><i class="fas fa-map-marker-alt"></i> {{ project.location }}</span>
+                                <span><i class="far fa-calendar-alt"></i> 2024-2025</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Москва</span>
                             </div>
-                            <p class="project-excerpt">{{ project.short_description }}</p>
-                            <a href="{{ project.get_absolute_url }}" class="project-link">Подробнее</a>
+                            <p class="project-excerpt">Проект направлен на укрепление межнационального диалога через организацию культурных мероприятий, фестивалей и выставок, демонстрирующих богатство казахской культуры и традиций народов России.</p>
                         </div>
                     </article>
-                    {% endfor %}
+
+                    <!-- Проект 2: Молодежная инициатива -->
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="{% static 'img/astana_volunteer.png' %}" alt="Молодежь за единство">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Молодежь за единство</h3>
+                            <div class="project-meta">
+                                <span><i class="far fa-calendar-alt"></i> Постоянно</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Москва и регионы</span>
+                            </div>
+                            <p class="project-excerpt">Программа поддержки молодежных инициатив, направленных на укрепление дружбы между народами, проведение образовательных семинаров и волонтерских акций среди молодежи разных национальностей.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
-
-
-        <footer class="site-footer" id="contacts">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-main">
-                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
-                        <p class="footer-description">Фонд содействия развитию дружбы народов и<br> национальных культур "Астана"</p>
-                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
-
-                    </div>
-
-                    <div class="footer-contacts">
-                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
-                        <ul class="contact-list">
-                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая, д. 41, к. 2</li>
-                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
-                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-social">
-                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
-                        <div class="social-links">
-                            <a href="#" class="social-link" aria-label="Whats app">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-                        </div>
-
-                        <div class="feedback-section">
-                            <button class="feedback-button" onclick="window.location.href='/feedback.html'">
-                                <i class="fas fa-envelope"></i> Обратная связь
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        <p>© Фонд Астана 2025</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="{% static 'js/menu.js' %}" defer></script>
-    <script src="{% static 'js/search.js' %}" defer></script>
-    <script src="{% static 'js/projects-tabs.js' %}" defer></script>
-</body>
-</html>
+{% endblock %}

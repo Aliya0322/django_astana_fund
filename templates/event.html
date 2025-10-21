@@ -1,64 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
+{% extends 'base.html' %}
     {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/event.css' %}">
-    <title>Фонд Астана - Мероприятия</title>
-</head>
-<body>
-    <div class="frame-box">
-        <header class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo-box">
-                        <a href="{% url 'main_page' %}" class="logo-link">
-                            <img src="{% static 'img/logo.png' %}" alt="Логотип">
-                        </a>
-                        <div>
-                            <a href="{% url 'main_page' %}" class="logo-link">
-                                <div class="logo-text desktop-logo-text">
-                                    Фонд содействия развитию дружбы народов и<br>
-                                    национальных культур "АСТАНА"
-                                </div>
-                                <div class="logo-text mobile-logo-text">
-                                    Фонд содействия развитию дружбы
-                                    народов и национальных культур
-                                    "АСТАНА"
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="social-buttons">
-                        <div class="search-wrapper">
-                            <a href="#" class="search-button" id="search-button">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <div class="search-container" id="search-container">
-                                <input type="text" id="search-input" placeholder="Поиск по сайту..." />
-                            </div>
-                        </div>
-                        <a href="#" class="whatsapp-button" id="whatsapp-button">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                        <div class="menu-icon" id="menu-icon">
-                            <i class="fa-solid fa-bars"></i>
-                        </div>
-                    </div>
-                </div>
-                <nav class="nav" id="nav-links">
-                <a href="{% url 'about' %}">О ФОНДЕ</a>
-                <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
-                <a href="{% url 'media' %}">СМИ О НАС</a>
-                <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
-                <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
-                <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
-                <a href="#contacts">КОНТАКТЫ</a>
-                </nav>
-            </div>
-        </header>
+{% endblock %}
+
+{% block title %}Мероприятия - Фонд Астана{% endblock %}
+
+{% block content %}
 
         <!-- Секция мероприятий -->
         <section class="events-section">
@@ -74,108 +23,126 @@
 
                     <div class="events-grid">
     <!-- Предстоящие мероприятия -->
-    {% for event in upcoming_events %}
     <article class="event-card" data-category="current">
         <div class="event-image">
-            {% if event.image %}
-                <img src="{{ event.image.url }}" alt="{{ event.title }}">
-            {% else %}
-                <img src="{% static 'img/default_event.jpg' %}" alt="Мероприятие">
-            {% endif %}
+            <img src="{% static 'img/events/event2.jpg' %}" alt="Фестиваль культур">
             <span class="event-status current">Предстоящее</span>
         </div>
         <div class="event-content">
-            <h3 class="event-title">{{ event.title }}</h3>
+            <h3 class="event-title">Фестиваль культур народов мира</h3>
             <div class="event-meta">
-                <span><i class="far fa-calendar-alt"></i> {{ event.start_date|date:"d E Y" }}</span>
-                <span><i class="far fa-clock"></i> {{ event.start_date|time:"H:i" }}</span>
-                <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+                <span><i class="far fa-calendar-alt"></i> 15 ноября 2025</span>
+                <span><i class="far fa-clock"></i> 18:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Московский дом национальностей</span>
             </div>
-            <p class="event-excerpt">{{ event.short_description }}</p>
+            <p class="event-excerpt">Грандиозное мероприятие, посвященное единству и многообразию культур. Выступления творческих коллективов, национальная кухня, мастер-классы и многое другое.</p>
             <div class="event-footer">
-                <a href="{% url 'event_detail_future' event.id %}" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                <a href="/event/future/1/" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </article>
-    {% endfor %}
+
+    <article class="event-card" data-category="current">
+        <div class="event-image">
+            <img src="{% static 'img/events/event2.jpg' %}" alt="Мастер-класс">
+            <span class="event-status current">Предстоящее</span>
+        </div>
+        <div class="event-content">
+            <h3 class="event-title">Мастер-класс по казахским ремёслам</h3>
+            <div class="event-meta">
+                <span><i class="far fa-calendar-alt"></i> 20 ноября 2025</span>
+                <span><i class="far fa-clock"></i> 15:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Культурный центр "Астана"</span>
+            </div>
+            <p class="event-excerpt">Приглашаем на уникальный мастер-класс по традиционным казахским ремёслам. Научитесь создавать национальные украшения и узнайте о древних техниках.</p>
+            <div class="event-footer">
+                <a href="/event/future/2/" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </article>
+
+    <article class="event-card" data-category="current">
+        <div class="event-image">
+            <img src="{% static 'img/events/event2.jpg' %}" alt="Концерт">
+            <span class="event-status current">Предстоящее</span>
+        </div>
+        <div class="event-content">
+            <h3 class="event-title">Концерт "Голоса степей"</h3>
+            <div class="event-meta">
+                <span><i class="far fa-calendar-alt"></i> 25 ноября 2025</span>
+                <span><i class="far fa-clock"></i> 19:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Концертный зал им. Чайковского</span>
+            </div>
+            <p class="event-excerpt">Вечер казахской музыки и поэзии. Выступления народных артистов, исполнение традиционных кюев на домбре и айтыс акынов.</p>
+            <div class="event-footer">
+                <a href="/event/future/3/" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </article>
 
     <!-- Прошедшие мероприятия -->
-    {% for event in past_events %}
     <article class="event-card" data-category="past">
         <div class="event-image">
-            {% if event.image %}
-                <img src="{{ event.image.url }}" alt="{{ event.title }}">
-            {% else %}
-                <img src="{% static 'img/default_event.jpg' %}" alt="Мероприятие">
-            {% endif %}
+            <img src="{% static 'img/events/event2.jpg' %}" alt="Наурыз">
             <span class="event-status past">Прошедшее</span>
         </div>
         <div class="event-content">
-            <h3 class="event-title">{{ event.title }}</h3>
+            <h3 class="event-title">Празднование Наурыз</h3>
             <div class="event-meta">
-                <span><i class="far fa-calendar-alt"></i> {{ event.start_date|date:"d E Y" }}</span>
-                <span><i class="far fa-clock"></i> {{ event.start_date|time:"H:i" }}</span>
-                <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+                <span><i class="far fa-calendar-alt"></i> 21 марта 2025</span>
+                <span><i class="far fa-clock"></i> 12:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Парк Сокольники</span>
             </div>
-            <p class="event-excerpt">{{ event.short_description }}</p>
+            <p class="event-excerpt">Традиционное празднование казахского Нового года. Более 500 гостей, национальные игры, конкурсы, угощения. Большой той и выступления артистов.</p>
             <div class="event-footer">
-                <a href="{% url 'event_detail_past' event.id %}" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                <a href="/event/past/1/" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </article>
-    {% endfor %}
+
+    <article class="event-card" data-category="past">
+        <div class="event-image">
+            <img src="{% static 'img/events/event2.jpg' %}" alt="Выставка">
+            <span class="event-status past">Прошедшее</span>
+        </div>
+        <div class="event-content">
+            <h3 class="event-title">Выставка "Казахское искусство"</h3>
+            <div class="event-meta">
+                <span><i class="far fa-calendar-alt"></i> 10 сентября 2025</span>
+                <span><i class="far fa-clock"></i> 10:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Центральный выставочный зал "Манеж"</span>
+            </div>
+            <p class="event-excerpt">Уникальная выставка работ современных казахских художников. Посетило более 1000 человек. Представлены живопись, графика, скульптура.</p>
+            <div class="event-footer">
+                <a href="/event/past/2/" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </article>
+
+    <article class="event-card" data-category="past">
+        <div class="event-image">
+            <img src="{% static 'img/events/event2.jpg' %}" alt="Конференция">
+            <span class="event-status past">Прошедшее</span>
+        </div>
+        <div class="event-content">
+            <h3 class="event-title">Конференция "Межкультурный диалог"</h3>
+            <div class="event-meta">
+                <span><i class="far fa-calendar-alt"></i> 5 октября 2025</span>
+                <span><i class="far fa-clock"></i> 09:00</span>
+                <span><i class="fas fa-map-marker-alt"></i> Отель "Рэдиссон Ройал"</span>
+            </div>
+            <p class="event-excerpt">Международная конференция с участием представителей 15 стран. Обсуждение важных вопросов культурного обмена, интеграции и сохранения традиций.</p>
+            <div class="event-footer">
+                <a href="/event/past/3/" class="event-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </article>
 </div>
                 </div>
             </section>
 
-        <footer class="site-footer" id="contacts">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-main">
-                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
-                        <p class="footer-description">Фонд содействия развитию дружбы народов и национальных культур "Астана"</p>
-                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
-                    </div>
+{% endblock %}
 
-                    <div class="footer-contacts">
-                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
-                        <ul class="contact-list">
-                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая, д. 41, к. 2</li>
-                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
-                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-social">
-                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
-                        <div class="social-links">
-                            <a href="#" class="social-link" aria-label="Whats app">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-                        </div>
-
-                        <div class="feedback-section">
-                            <button class="feedback-button" onclick="window.location.href='/feedback.html'">
-                                <i class="fas fa-envelope"></i> Обратная связь
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        <p>© Фонд Астана 2025</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-                <script src="{% static 'js/menu.js' %}" defer></script>
-                <script src="{% static 'js/search.js' %}" defer></script>
+{% block extra_js %}
                 <script src="{% static 'js/event-tabs.js' %}" defer></script>
-
-
-
-</body>
-</html>
+{% endblock %}

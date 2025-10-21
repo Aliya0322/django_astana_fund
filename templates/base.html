@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+    <title>{% block title %}Фонд Астана{% endblock %}</title>
+</head>
+<body>
+    <div class="frame-box">
+        <!-- HEADER - Единый для всех страниц -->
+        <header class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="logo-box">
+                        <a href="{% url 'main_page' %}" class="logo-link">
+                           <img src="{% static 'img/logo.png' %}" alt="Логотип">
+                        </a>
+                        <div>
+                            <a href="{% url 'main_page' %}" class="logo-link">
+                                <!-- Десктопная версия -->
+                                <div class="logo-text desktop-logo-text">
+                                    Фонд содействия развитию дружбы народов и<br>
+                                    национальных культур "АСТАНА"
+                                </div>
+
+                                <!-- Мобильная версия -->
+                                <div class="logo-text mobile-logo-text">
+                                    Фонд содействия развитию дружбы
+                                    народов и национальных культур
+                                    "АСТАНА"
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-buttons">
+                        <div class="menu-icon" id="menu-icon">
+                          <i class="fa-solid fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+        <nav class="nav" id="nav-links">
+            <a href="{% url 'about' %}">О ФОНДЕ</a>
+                    <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
+                    <a href="{% url 'media' %}">СМИ О НАС</a>
+                    <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
+                    <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
+                    <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
+                    <a href="#contacts">КОНТАКТЫ</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- CONTENT - Уникальный для каждой страницы -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- FOOTER - Единый для всех страниц -->
+        <footer class="site-footer" id="contacts">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
+                        <p class="footer-description">Фонд содействия развитию дружбы народов и<br> национальных культур "Астана"</p>
+                        <p><a href="/privacy-policy.html" class="privacy-policy-link" target="_blank">Политика обработки персональных данных</a></p>
+                    </div>
+
+                    <div class="footer-contacts">
+                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
+                        <ul class="contact-list">
+                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая д. 41, к. 2</li>
+                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
+                            <li><i class="fas fa-envelope"></i> info@culture.ru</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social">
+                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Whats app">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        <p>© Фонд Астана 2025</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'js/menu.js' %}" defer></script>
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>
+

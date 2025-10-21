@@ -1,169 +1,13 @@
-@font-face {
-    font-family: 'QazFont';
-    src: url('/static/fonts/Qaz-Regular.ttf') format('ttf');
-    font-weight: 400;
-    font-style: normal;
-}
-
 body {
-    background-color: #f4f1ea;  /* Спокойный, нейтральный фон */
+    background-color: #f4f1ea;
     color: #333;
     margin: 0;
-    font-family: QazFont;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-}
-
-.section-title {
-    font-size: 36px;
-    color: #00ABC2;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-
-/* ================= ОСНОВНЫЕ СТИЛИ ================= */
-.frame-box {
-    height: auto;
-    background: #fff;
-    border: 20px solid #f5f6f6;
-    padding: 30px 0;
-}
-
-.header {
-    background: #fff;
-}
-
-.header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.menu-icon {
-    display: none;
-    cursor: pointer;
-    font-size: 2.7rem;
-    color: #00ABC2;
-    margin-left: 15px;
-}
-
-.logo-box {
-    gap: 1rem;
-    display: flex;
-    align-items: center;
-}
-
-.logo-box img {
-    height: 6rem;
-    margin-right: 10px;
-    border-radius: 10px;
-}
-
-.desktop-logo-text {
-    display: block;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.mobile-logo-text {
-    display: none;
-}
-
-.logo-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: inherit;
-}
-
-.logo-link:hover {
-    text-decoration: none;
-}
-
-.social-buttons {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 10px;
-}
-
-.social-buttons a:hover {
-    background: white;
-    color: #00ABC2;
-}
-
-.social-buttons a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background: #00ABC2;
-    border-radius: 50%;
-    text-decoration: none;
-    color: #fff;
-    font-size: 18px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.nav {
-    display: flex;
-    gap: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    background: #f8f8f8;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #333;
-}
-
-
-/* ================= ОКНО ПОИСКА ================= */
-.search-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-.search-container {
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%) scale(0.95);
-    margin-right: 10px;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-}
-
-.search-container input {
-    padding: 6px 10px;
-    font-size: 14px;
-    border: 1px solid #3db3df;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-width: 180px;
-}
-
-.search-container.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) scale(1);
-    pointer-events: auto;
 }
 
 .container {
@@ -172,11 +16,22 @@ html {
     padding: 0 20px;
 }
 
-/* Стили для секции помощи */
+.section-title {
+    font-size: 36px;
+    color: #00ABC2;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* ================= СТИЛИ ДЛЯ СЕКЦИИ ПОМОЩИ ================= */
 .help-section {
     padding: 60px 0;
-    text-align: center;
-    align-items: center;
 }
 
 .help-cards {
@@ -209,13 +64,7 @@ html {
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
-.section-subtitle {
-    color: #666;
-    font-size: 18px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+
 .help-description {
     color: #7f8c8d;
     margin-bottom: 20px;
@@ -263,7 +112,10 @@ html {
     font-weight: 600;
     margin-top: 15px;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
+
 .help-button:hover {
     background-color: #2980b9;
 }
@@ -288,254 +140,10 @@ html {
     text-decoration: underline;
 }
 
-/* ================= ФУТЕР ================= */
-.site-footer {
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 40px 0;
-    border-top: 2px solid #ddd;
-}
-
-.site-footer .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Сетка футера */
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.footer-title {
-    font-size: 18px;
-    color: black;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.footer-subtitle {
-    font-size: 18px;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-/* Основной блок */
-.footer-description {
-    line-height: 1.5;
-    margin-bottom: 25px;
-}
-
-.privacy-policy-link {
-    color: #00ABC2;
-    text-decoration: none;
-}
-
-.privacy-policy-link:hover {
-    text-decoration: underline;
-}
-
-/* Контакты */
-.contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.contact-list li {
-    margin-bottom: 12px;
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contact-list i {
-    color: black;
-    width: 20px;
-    text-align: center;
-}
-
-/* Социальные сети */
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.social-links a {
-    background: #00ABC2;
-    color: white;
-    border-radius: 50%;
-    padding: 8px;
-}
-
-.social-links a:hover {
-    background: white;
-    color: #00ABC2;
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    background: #EAE7DC;
-    color: #00ABC2;
-    border-radius: 50%;
-    font-size: 18px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.social-link:hover {
-    color: #659dbd;
-    text-decoration: none;
-}
-
-/* Кнопка обратной связи */
-.feedback-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #00ABC2;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 2rem;
-}
-
-.feedback-button:hover {
-    background: white;
-    color: #00ABC2;
-    transform: translateY(-2px);
-}
-
-.feedback-button i {
-    font-size: 16px;
-}
-
-/* Нижняя часть футера */
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 30px;
-    border-top: 1px solid #ddd;
-}
-
-.copyright {
-    color: #666;
-    font-size: 14px;
-}
-
 /* ================= АДАПТИВНОСТЬ ================= */
 @media (max-width: 768px) {
-    .frame-box {
-        border: 8px solid #f5f6f6;
-    }
-
-    .header {
-        position: relative;
-        padding: 10px 15px;
-    }
-
-    .header-top {
-        display: flex;
-        gap: 10px;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-
-    .social-buttons {
-        width: 100%;
-        justify-content: flex-end;
-    }
-
-    .logo-box {
-        margin-top: 2rem;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .logo-box img {
-        height: 5rem;
-        border-radius: 10px;
-    }
-
-    .desktop-logo-text {
-        font-size: 20px;
-        line-height: 1.3;
-        display: block;
-    }
-
-    .mobile-logo-text {
-        display: none;
-    }
-
-    .nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #EAE7DC;
-        border-radius: 0 0 10px 10px;
-        padding: 15px 0;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-    }
-
-    .nav.active {
-        display: flex;
-    }
-
-    .nav a {
-        padding: 10px 20px;
-        text-align: center;
-    }
-
-    .header-top {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 15px;
-        position: relative;
-    }
-
-    .footer-content {
+    .help-cards {
         grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .footer-title {
-        font-size: 1.5rem;
-    }
-
-    .social-links {
-        justify-content: flex-start;
-    }
-
-    .feedback-button {
-        width: 50%;
-        justify-content: center;
-        margin-bottom: 2rem;
     }
 }
 
@@ -544,65 +152,11 @@ html {
         padding: 0 10px;
     }
 
-    .logo-box img {
-        height: 5rem;
-        margin-right: 5px;
+    .section-title {
+        font-size: 28px;
     }
 
-    .desktop-logo-text {
-        display: none;
-    }
-
-    .mobile-logo-text {
-        display: block;
+    .section-subtitle {
         font-size: 16px;
-        font-weight: bold;
-    }
-
-    .nav a {
-        font-size: 14px;
-        padding: 10px;
-    }
-    .social-buttons {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .search-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    .search-wrapper.active .search-container {
-        display: block;
-    }
-
-    #search-input {
-        width: 100%;
-        max-width: 180px;
-        font-size: 14px;
-    }
-
-    .whatsapp-button.hidden {
-        display: none;
-    }
-
-    .copyright {
-        font-size: 12px;
-        text-align: center;
-    }
-
-    .feedback-button {
-        width: 70%;
-        font-size: 14px;
-        padding: 10px 12px;
-    }
-
-    .social-link {
-        width: 30px;
-        height: 30px;
-        font-size: 18px;
     }
 }

@@ -1,72 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
-    <title>Astana Fund Web site</title>
-</head>
-<body>
-    <div class="frame-box">
-        <header class="header">
-            <div class="container">
-                <div class="header-top">
-                    <div class="logo-box">
-                        <a href="{% url 'main_page' %}" class="logo-link">
-                           <img src="{% static 'img/logo.png' %}" alt="Логотип">
-                        </a>
-                        <div>
-                           <a href="{% url 'main_page' %}" class="logo-link">
-                                <!-- Десктопная версия -->
-                                <div class="logo-text desktop-logo-text">
-                                    Фонд содействия развитию дружбы народов и<br>
-                                    национальных культур
-                                    "АСТАНА"
-                                  </div>
+{% extends 'base.html' %}
+{% load static %}
 
-                                  <!-- Мобильная версия -->
-                                  <div class="logo-text mobile-logo-text">
-                                    Фонд содействия развитию дружбы
-                                    народов и национальных культур
-                                    "АСТАНА"
-                                  </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="social-buttons">
-                        <div class="search-wrapper">
-                          <a href="#" class="search-button" id="search-button">
-                            <i class="fas fa-search"></i>
-                          </a>
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+{% endblock %}
 
-                          <div class="search-container" id="search-container">
-                            <input type="text" id="search-input" placeholder="Поиск по сайту..." />
-                          </div>
-                        </div>
+{% block title %}Обратная связь - Фонд Астана{% endblock %}
 
-                        <a href="#" class="whatsapp-button" id="whatsapp-button">
-                          <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-
-                        <div class="menu-icon" id="menu-icon">
-                          <i class="fa-solid fa-bars"></i>
-                        </div>
-                      </div>
-                </div>
-                <nav class="nav" id="nav-links">
-                    <a href="/about.html">О ФОНДЕ</a>
-                    <a href="/event.html">МЕРОПРИЯТИЯ</a>
-                    <a href="/media.html">СМИ О НАС</a>
-                    <a href="/projects.html">ПРОЕКТЫ</a>
-                    <a href="/help.html">ПОМОЩЬ ФОНДУ</a>
-                    <a href="/interesting.html">ИНТЕРЕСНОЕ</a>
-                    <a href="#contacts">КОНТАКТЫ</a>
-                </nav>
-            </div>
-        </header>
+{% block content %}
         <main class="container">
             <div class="feedback-page">
                 <h1 class="page-title">Обратная связь</h1>
@@ -118,49 +60,8 @@
                 {% endif %}
             </div>
         </main>
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-main">
-                        <h2 class="footer-title">ФОНД "АСТАНА"</h2>
-                        <p class="footer-description">Фонд содействия развитию дружбы народов и национальных культур "Астана"</p>
-                    </div>
+{% endblock %}
 
-                    <div class="footer-contacts">
-                        <h3 class="footer-subtitle">КОНТАКТЫ</h3>
-                        <ul class="contact-list">
-                            <li><i class="fas fa-map-marker-alt"></i> 105264, г. Москва, ул. 11-я Парковая, д. 41, к. 2</li>
-                            <li><i class="fas fa-phone"></i> +7 (444) 444-44-44</li>
-                            <li><i class="fas fa-envelope"></i> info@rfculture.ru</li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-social">
-                        <h3 class="footer-subtitle">ФОНД В СОЦСЕТЯХ</h3>
-                        <div class="social-links">
-                            <a href="#" class="social-link" aria-label="What's app">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-                        </div>
-
-                        <div class="feedback-section">
-                            <button class="feedback-button">
-                                <i class="fas fa-envelope"></i> Обратная связь
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        <p>© Фонд Астана 2025</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="{% static 'js/menu.js' %}" defer></script>
-    <script src="{% static 'js/search.js' %}" defer></script>
-</body>
-</html>
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% endblock %}
