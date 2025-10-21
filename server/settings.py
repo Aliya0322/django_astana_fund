@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv()
 
 from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT
 
@@ -35,12 +32,12 @@ ALLOWED_HOSTS = [
     "localhost", 
     ".vercel.app",
     ".pythonanywhere.com",  # PythonAnywhere домены
-    os.getenv('PYTHONANYWHERE_DOMAIN', ''),  # Ваш домен на PythonAnywhere
+    "Aliya0322.pythonanywhere.com",  # Ваш домен на PythonAnywhere
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://*.vercel.app",
     "https://*.pythonanywhere.com",
-    f"https://{os.getenv('PYTHONANYWHERE_DOMAIN', '')}",
+    "https://Aliya0322.pythonanywhere.com",
 ]
 
 
@@ -174,7 +171,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = '/home/Aliya0322/django_astana_fund/staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -197,7 +194,7 @@ WHITENOISE_USE_FINDERS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/home/Aliya0322/django_astana_fund/media'
 
 # Security settings for production
 if not DEBUG:
