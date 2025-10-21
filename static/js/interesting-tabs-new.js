@@ -1,10 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Interesting tabs script loaded');
+    
     // Элементы модальных окон
     const videoModal = document.getElementById('videoModal');
     const audioModal = document.getElementById('audioModal');
     const videoContainer = videoModal ? videoModal.querySelector('.video-player-container') : null;
     const audioPlayer = document.getElementById('audioPlayer');
     const closeButtons = document.querySelectorAll('.close');
+    
+    console.log('Modal elements found:', {
+        videoModal: !!videoModal,
+        audioModal: !!audioModal,
+        videoContainer: !!videoContainer,
+        audioPlayer: !!audioPlayer,
+        closeButtons: closeButtons.length
+    });
 
     // Универсальная функция открытия модального окна
     function showModal(modal) {
@@ -60,8 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const videoUrl = this.getAttribute('data-video');
+            console.log('Video button clicked, URL:', videoUrl);
 
-            if (!videoModal || !videoContainer) return;
+            if (!videoModal || !videoContainer) {
+                console.error('Video modal or container not found');
+                return;
+            }
 
             // Очищаем предыдущее видео
             videoContainer.innerHTML = '';
@@ -87,6 +101,61 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             showModal(videoModal);
+        });
+    });
+
+    // Обработчики для клика по видео-превью и получение длительности
+    document.querySelectorAll('.video-thumbnail').forEach((video, index) => {
+        console.log(`Setting up video ${index + 1}:`, video);
+        
+        // Получаем длительность видео
+        video.addEventListener('loadedmetadata', function() {
+            console.log(`Video ${index + 1} metadata loaded, duration:`, this.duration);
+            const duration = this.duration;
+            if (duration && !isNaN(duration)) {
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                const durationText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                console.log(`Video ${index + 1} duration text:`, durationText);
+                
+                // Находим badge с длительностью и обновляем его
+                const durationBadge = this.closest('.resource-image').querySelector('.duration-badge');
+                if (durationBadge) {
+                    console.log(`Updating duration badge for video ${index + 1}:`, durationBadge.textContent, '->', durationText);
+                    durationBadge.textContent = durationText;
+                } else {
+                    console.error(`Duration badge not found for video ${index + 1}`);
+                }
+            } else {
+                console.error(`Invalid duration for video ${index + 1}:`, duration);
+            }
+        });
+        
+        // Принудительно загружаем метаданные
+        video.load();
+
+        // Обработчик клика
+        video.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Video thumbnail clicked');
+            const source = this.querySelector('source');
+            if (!source) {
+                console.error('No source element found in video');
+                return;
+            }
+            const videoUrl = source.src;
+            const playButton = this.closest('.resource-card').querySelector('.play-video');
+            
+            if (playButton) {
+                // Устанавливаем data-video атрибут если его нет
+                if (!playButton.getAttribute('data-video')) {
+                    playButton.setAttribute('data-video', videoUrl);
+                }
+                console.log('Triggering play button click');
+                playButton.click();
+            } else {
+                console.error('Play button not found');
+            }
         });
     });
 
@@ -157,17 +226,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Переключение вкладок
+    // Переключение вкладок - упрощенная версия
+    console.log('Setting up tabs...');
+    
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
 
+    console.log('Found buttons:', tabButtons.length, 'contents:', tabContents.length);
+
     tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const tabId = button.getAttribute('data-tab');
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const tabId = this.getAttribute('data-tab');
+            console.log('Switching to tab:', tabId);
+            
+            // Убираем активный класс со всех элементов
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
-            button.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
+            
+            // Добавляем активный класс к выбранным элементам
+            this.classList.add('active');
+            const targetContent = document.getElementById(tabId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                console.log('Tab switched to:', tabId);
+            }
         });
     });
+    
+    console.log('Tabs setup complete');
 });

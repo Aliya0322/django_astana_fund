@@ -26,9 +26,14 @@
                         <!-- Видео 1: Казахская культура -->
                         <article class="resource-card">
                             <div class="resource-image">
-                                <img src="{% static 'img/astana_volunteer.png' %}" alt="Казахская культура и традиции">
+                                <video class="video-thumbnail" muted>
+                                    <source src="{% static 'img/astana.mp4' %}" type="video/mp4">
+                                </video>
                                 <span class="resource-type video-type">Видео</span>
                                 <span class="duration-badge">5:30</span>
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                             <div class="resource-content">
                                 <h3 class="resource-title">Казахская культура и традиции</h3>
@@ -42,9 +47,14 @@
                         <!-- Видео 2: Домбра -->
                         <article class="resource-card">
                             <div class="resource-image">
-                                <img src="{% static 'img/partner1.png' %}" alt="Домбра - душа казахского народа">
+                                <video class="video-thumbnail" muted>
+                                    <source src="{% static 'img/astana.mp4' %}" type="video/mp4">
+                                </video>
                                 <span class="resource-type video-type">Видео</span>
                                 <span class="duration-badge">8:15</span>
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                             <div class="resource-content">
                                 <h3 class="resource-title">Домбра - душа казахского народа</h3>
@@ -61,8 +71,8 @@
                     <div class="resources-grid">
                         <!-- Музыка 1: Кюй "Адай" -->
                         <article class="resource-card">
-                            <div class="resource-image">
-                                <img src="{% static 'img/pattern_leader.png' %}" alt="Кюй Адай">
+                            <div class="resource-image music-image">
+                                <i class="fas fa-compact-disc music-icon"></i>
                                 <span class="resource-type music-type">Музыка</span>
                                 <span class="duration-badge">4:20</span>
                             </div>
@@ -78,8 +88,8 @@
 
                         <!-- Музыка 2: Народная песня -->
                         <article class="resource-card">
-                            <div class="resource-image">
-                                <img src="{% static 'img/pattern-top.png' %}" alt="Алтыбакан">
+                            <div class="resource-image music-image">
+                                <i class="fas fa-compact-disc music-icon"></i>
                                 <span class="resource-type music-type">Музыка</span>
                                 <span class="duration-badge">3:45</span>
                             </div>
@@ -99,8 +109,8 @@
                     <div class="resources-grid">
                         <!-- Статья 1: Казахские традиции -->
                         <article class="resource-card">
-                            <div class="resource-image">
-                                <img src="{% static 'img/logo.png' %}" alt="Казахские традиции и обычаи">
+                            <div class="resource-image article-image">
+                                <i class="fas fa-file-alt article-icon"></i>
                                 <span class="resource-type article-type">Статья</span>
                                 <span class="reading-time">8 мин чтения</span>
                             </div>
@@ -116,8 +126,8 @@
 
                         <!-- Статья 2: История домбры -->
                         <article class="resource-card">
-                            <div class="resource-image">
-                                <img src="{% static 'img/partner1.png' %}" alt="История домбры">
+                            <div class="resource-image article-image">
+                                <i class="fas fa-file-alt article-icon"></i>
                                 <span class="resource-type article-type">Статья</span>
                                 <span class="reading-time">12 мин чтения</span>
                             </div>
@@ -159,5 +169,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/interesting-tabs.js' %}" defer></script>
+<script src="{% static 'js/interesting-tabs-new.js' %}?v=8" defer></script>
 {% endblock %}

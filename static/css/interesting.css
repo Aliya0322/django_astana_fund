@@ -62,13 +62,22 @@ html {
     box-shadow: 0 4px 12px rgba(0, 171, 194, 0.3);
 }
 
-.tab-content {
-    display: none;
+.interesting-section .tab-content {
+    display: none !important;
     animation: fadeIn 0.5s ease;
 }
 
-.tab-content.active {
-    display: block;
+.interesting-section .tab-content.active {
+    display: block !important;
+}
+
+/* Дополнительные правила для надежности */
+#video, #music, #articles {
+    display: none !important;
+}
+
+#video.active, #music.active, #articles.active {
+    display: block !important;
 }
 
 @keyframes fadeIn {
@@ -91,6 +100,8 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     border: 1px solid #f0f0f0;
+    width: 100%;
+    min-width: 300px;
 }
 
 .resource-card:hover {
@@ -99,24 +110,111 @@ html {
 }
 
 .resource-image {
-    height: 200px;
+    height: 180px;
     overflow: hidden;
     position: relative;
 }
 
-.resource-image img {
+.resource-image img,
+.resource-image video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-.resource-card:hover .resource-image img {
+/* Стили для музыкальных иконок */
+.music-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+.music-icon {
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.resource-card:hover .music-icon {
+    transform: rotate(360deg);
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Стили для иконок статей */
+.article-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    position: relative;
+}
+
+.article-icon {
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.resource-card:hover .article-icon {
+    transform: scale(1.1);
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.resource-card:hover .resource-image img,
+.resource-card:hover .resource-image video {
     transform: scale(1.05);
 }
 
+.video-thumbnail {
+    cursor: pointer;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.play-overlay i {
+    color: white;
+    font-size: 20px;
+    margin-left: 3px;
+}
+
+.resource-card:hover .play-overlay {
+    opacity: 1;
+}
+
 .resource-content {
-    padding: 25px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.resource-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    min-width: 300px;
 }
 
 /* ================= ТИПЫ РЕСУРСОВ ================= */
@@ -195,8 +293,9 @@ html {
 .resource-description {
     color: #7f8c8d;
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     line-height: 1.6;
+    flex-grow: 1;
 }
 
 /* ================= ССЫЛКИ ================= */
@@ -212,6 +311,8 @@ html {
     border: 2px solid #00ABC2;
     border-radius: 25px;
     background: transparent;
+    margin-top: auto;
+    align-self: flex-start;
 }
 
 .resource-link:hover {
@@ -252,6 +353,9 @@ html {
     max-width: 800px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: block !important;
+    flex-direction: initial !important;
+    height: auto !important;
 }
 
 .close {
@@ -271,12 +375,15 @@ html {
 
 /* Видео модальное окно */
 #videoModal .modal-content {
-    width: 90%;
-    max-width: 1200px;
-    padding: 0;
-    background: #000;
+    width: 90% !important;
+    max-width: 1200px !important;
+    padding: 0 !important;
+    background: #000 !important;
     border-radius: 15px;
     overflow: hidden;
+    display: block !important;
+    flex-direction: initial !important;
+    height: auto !important;
 }
 
 .video-player-container {
@@ -303,14 +410,17 @@ html {
 
 /* Аудио модальное окно */
 #audioModal .modal-content {
-    width: 600px;
-    max-width: 90%;
+    width: 600px !important;
+    max-width: 90% !important;
     margin: 10% auto;
-    background-color: #fff;
+    background-color: #fff !important;
     border-radius: 15px;
-    padding: 30px;
+    padding: 30px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
+    display: block !important;
+    flex-direction: initial !important;
+    height: auto !important;
 }
 
 #audioThumbnail {
@@ -369,7 +479,7 @@ html {
     }
 
     .resource-image {
-        height: 180px;
+        height: 160px;
     }
 
     .page-title {

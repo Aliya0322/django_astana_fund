@@ -206,8 +206,8 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # Используем CompressedStaticFilesStorage без манифеста (только компрессия)
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        # Используем обычное хранилище без сжатия для разработки
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 

@@ -390,10 +390,17 @@ html {
     margin-bottom: 20px; /* Дополнительный отступ снизу */
 }
 
-.overlay-content h2 {
-    font-size: 28px;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+/* Базовые стили для десктопной версии */
+@media (min-width: 769px) {
+    .overlay-content h2 {
+        font-size: 28px;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .overlay-content {
+        margin-bottom: 20px; /* Базовый отступ для десктопа */
+    }
 }
 
 .donate-btn {
@@ -654,6 +661,8 @@ html {
     border-radius: 10px;
 }
 
+/* Убраны принудительные стили для десктопной версии */
+
 .volunteer-text h2 {
     font-size: 2.8rem;
     color: white;
@@ -661,6 +670,8 @@ html {
     margin-bottom: 1.5rem;
     position: relative;
     display: inline-block;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .volunteer-text h2:after {
@@ -1389,7 +1400,107 @@ a.privacy-policy-link:hover {
 }
 
 /* ================= АДАПТИВНОСТЬ ================= */
+
+/* ВРЕМЕННЫЙ СТИЛЬ ДЛЯ ПРОВЕРКИ - ПРИМЕНЯЕТСЯ ВСЕГДА */
+.volunteer-section {
+    /* Убраны отладочные рамки */
+}
+
+/* ВРЕМЕННЫЙ СТИЛЬ ДЛЯ СКРЫТИЯ НАВИГАЦИИ В МОБИЛЬНОЙ ВЕРСИИ */
 @media (max-width: 768px) {
+    .nav {
+        display: none !important;
+    }
+    
+    .desktop-logo-text {
+        font-size: 20px !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Стили для секции волонтерства только в мобильной версии */
+    .volunteer-content {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 2rem !important;
+        min-height: auto !important;
+        padding: 20px !important;
+    }
+    
+    .volunteer-image-circle {
+        order: 1 !important;
+        margin-left: 0 !important;
+        width: 200px !important;
+        height: 200px !important;
+    }
+    
+    .volunteer-text {
+        order: 2 !important;
+        margin-right: 0 !important;
+        padding: 20px !important;
+        background-color: rgba(0, 0, 0, 0.7) !important;
+        border-radius: 15px !important;
+    }
+    
+    .volunteer-text h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .volunteer-text p {
+        font-size: 1.1rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .volunteer-btn {
+        padding: 12px 25px !important;
+        font-size: 0.95rem !important;
+        border-radius: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .desktop-logo-text {
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .volunteer-text h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.8rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .volunteer-text p {
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .volunteer-btn {
+        padding: 10px 18px !important;
+        font-size: 0.85rem !important;
+        border-radius: 25px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Принудительные стили для видео секции в мобильной версии */
+    .video-section .overlay-content h2 {
+        font-size: 14px !important;
+        margin-bottom: 0.6rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .video-section .overlay-content {
+        margin-bottom: 10px !important; /* Опускаем текст ближе к нижней границе */
+    }
+    
+    .video-overlay {
+        padding-bottom: 2% !important; /* Уменьшаем отступ снизу для мобильных */
+    }
+    
     .frame-box {
         border: 8px solid #f5f6f6;
     }
@@ -1402,34 +1513,58 @@ a.privacy-policy-link:hover {
     .header-top {
         display: flex;
         gap: 10px;
+        align-items: flex-start;
+        width: 100%; /* Занимает всю ширину */
+        max-width: 100%; /* Убираем ограничение максимальной ширины */
+        box-sizing: border-box; /* Включаем отступы в расчет ширины */
     }
 
     .menu-icon {
         display: block;
         position: relative;
         z-index: 10000;
+        width: 50px; /* Фиксированная ширина для кнопки меню */
+        height: 50px;
+        flex-shrink: 0; /* Кнопка не сжимается */
     }
 
     .social-buttons {
-        width: 100%;
+        flex-shrink: 0; /* Кнопка меню не сжимается */
         justify-content: flex-end;
+        align-items: flex-start;
+        padding-top: 20px;
+        min-width: auto; /* Минимальная ширина автоматическая */
     }
 
     .logo-box {
-        margin-top: 2rem;
+        margin-top: 4rem; /* Увеличиваем отступ сверху, чтобы логотип был ниже меню-бургера */
         gap: 10px;
-        width: 100%;
+        flex: 1; /* Логотип занимает все доступное пространство */
+        max-width: calc(100% - 70px); /* Оставляем место для кнопки меню и большего логотипа */
+        display: flex; /* Явно указываем flexbox */
+        align-items: flex-start;
+        flex-direction: row; /* Горизонтальное расположение элементов */
+        box-sizing: border-box; /* Включаем отступы в расчет ширины */
     }
 
     .logo-box img {
-        height: 5rem;
+        height: 6rem; /* Возвращаем размер как в десктопной версии */
+        width: auto; /* Автоматическая ширина для сохранения пропорций */
         border-radius: 10px;
+        flex-shrink: 0; /* Изображение не сжимается */
     }
 
     .desktop-logo-text {
         font-size: 20px;
         line-height: 1.3;
         display: block;
+        flex: 1; /* Занимает оставшееся пространство рядом с логотипом */
+        text-align: left; /* Выравниваем по левому краю */
+        word-wrap: break-word; /* Переносим длинные слова */
+        hyphens: auto; /* Автоматическая расстановка переносов */
+        min-width: 0; /* Позволяет тексту сжиматься и растягиваться */
+        max-width: none; /* Убираем ограничение максимальной ширины */
+        width: auto; /* Автоматическая ширина */
     }
 
     .mobile-logo-text {
@@ -1460,7 +1595,6 @@ a.privacy-policy-link:hover {
     body.menu-open {
         overflow: hidden;
     }
-
 
     @keyframes slideDown {
         from {
@@ -1499,75 +1633,664 @@ a.privacy-policy-link:hover {
     .menu-close-btn {
         display: none;
     }
-}
-/* Дополнительные стили для очень маленьких экранов */
-@media (max-width: 480px) {
+
+    /* ================= ВИДЕО СЕКЦИЯ - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
     .video-section {
-        padding: 30px 0;
-        height: 100%;
-        overflow: hidden;
-    }
-    
-    .overlay-content h2 {
-        font-size: 16px;
+        padding: 15px 0 30px 0;
     }
 
-    .overlay-content p {
-        font-size: 14px;
+    .container {
+        padding: 0 15px;
+    }
+
+    .video-wrapper {
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 160, 220, 0.12);
+    }
+
+    .video-container {
+        padding-bottom: 60%; /* Увеличиваем соотношение для мобильных */
+    }
+
+    .video-section .overlay-content {
+        width: 95%;
+        padding: 15px;
     }
 
     .donate-btn {
-        font-size: 14px;
+        padding: 12px 25px;
+        font-size: 0.9rem;
+        margin-top: 15px;
     }
 
-    /* Карточки событий */
+    /* ================= О НАС / МИССИЯ - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+    .about-mission {
+        padding: 30px 0 50px 0;
+    }
+
+    .about-mission__grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .about-card, .mission-card {
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+
+    .about-card__title, .mission-card__title {
+        font-size: 28px;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-card__content p, .mission-card__content p {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    .about-card__link {
+        font-size: 15px;
+    }
+
+    /* ================= ВОЛОНТЕРСКАЯ СЕКЦИЯ - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+    /* ИЗМЕНЕНО: Порядок элементов в мобильной версии - картинка сверху, текст снизу */
+    .volunteer-section {
+        padding: 40px 0;
+        min-height: auto;
+        margin-bottom: 2rem;
+        border: 5px solid red !important; /* ВРЕМЕННАЯ ПРОВЕРКА */
+        background: yellow !important; /* ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА */
+    }
+
+    .volunteer-pattern {
+        width: 200px;
+        left: calc(50% - 100px);
+        top: -15px;
+        opacity: 0.7;
+    }
+
+    .volunteer-section .volunteer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        text-align: center;
+        gap: 1.5rem;
+        min-height: auto;
+        padding: 0 10px;
+        align-items: center;
+        border: 3px solid blue !important; /* ВРЕМЕННАЯ ПРОВЕРКА */
+    }
+
+    .volunteer-text {
+        margin-right: 0;
+        padding: 20px 15px;
+        order: 2;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        margin: 0 10px;
+    }
+
+    .volunteer-text h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+
+    .volunteer-text p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .volunteer-image-circle {
+        width: 180px;
+        height: 180px;
+        margin-left: 0;
+        order: 1;
+        border: 3px solid #fff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .volunteer-btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+        border-radius: 30px;
+        display: inline-block;
+        width: auto;
+        text-align: center;
+    }
+
+    /* ================= КАЛЕНДАРЬ СОБЫТИЙ - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+    .events-calendar {
+        padding: 30px 0 50px 0;
+        margin: 2rem 0;
+    }
+
+    .events-calendar .section-title {
+        font-size: 28px;
+        margin-bottom: 1.5rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .card {
+        max-width: 100%;
+        border-radius: 20px;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
     .card-title {
-        font-size: 1rem;
+        font-size: 18px;
+        margin: 12px 0;
+    }
+
+    .card-description {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .card > *:not(img) {
+        padding: 0 20px;
+    }
+
+    .card > *:last-child {
+        padding-bottom: 20px;
+    }
+
+    .card-stats {
+        padding: 15px 20px 10px !important;
+    }
+
+    .stat-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    /* ================= ПРОШЕДШИЕ МЕРОПРИЯТИЯ - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+    .past-events {
+        padding: 50px 0;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .archive-link {
+        font-size: 16px;
+        margin-left: 0;
+    }
+
+    /* ================= РУКОВОДСТВО - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+    .leadership-section {
+        padding: 40px 0;
+        margin-bottom: 2rem;
+    }
+
+    .leadership-section .section-title {
+        font-size: 28px;
+        margin-bottom: 1.5rem;
+    }
+
+    .leadership-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 10px;
+    }
+
+    .leader-card {
+        padding: 25px 20px;
+        border-radius: 20px;
+        max-width: 100%;
+    }
+
+    .leader-card img {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+
+    .leader-card h4 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .leader-card p {
+        font-size: 0.9rem;
+    }
+
+    .leader-card .bio {
+        margin: 12px 15px 15px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .contact-info {
+        font-size: 0.45rem;
+        margin-top: 8px;
+    }
+
+    .leadership-section .decorative-element {
+        top: -25px;
+        right: -25px;
+        width: 80px;
+        height: 80px;
+    }
+
+    /* ================= СПОНСОРЫ - МОБИЛЬНАЯ АДАПТАЦИЯ ================= */
+    .sponsors {
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .sponsors .container {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .sponsors-tittle {
+        font-size: 28px;
+        margin-bottom: 1.5rem;
+    }
+
+    .sponsors-logos {
+        gap: 2rem;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .sponsors-logos img {
+        max-height: 60px;
+    }
+
+    .contract-link {
+        font-size: 13px;
+        margin-top: 8px;
+    }
+}
+/* ================= ПЛАНШЕТЫ (768px - 1024px) ================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .about-mission__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .leadership-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+
+    .volunteer-content {
+        gap: 3rem;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .volunteer-image-circle {
+        width: 280px;
+        height: 280px;
+        margin-left: 2rem;
+    }
+
+    .volunteer-text {
+        margin-right: 2rem;
+        padding: 25px;
+    }
+
+    .volunteer-text p {
+        font-size: 1.3rem;
+        line-height: 1.7;
+    }
+
+    .volunteer-pattern {
+        width: 300px;
+        left: calc(50% - 150px);
+        top: -25px;
+        opacity: 0.8;
+    }
+}
+
+/* ================= ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (до 480px) ================= */
+@media (max-width: 480px) {
+    /* Принудительные стили для очень маленьких экранов */
+    .video-section .overlay-content h2 {
+        font-size: 12px !important;
+        line-height: 1.0 !important;
+    }
+    
+    .video-section .overlay-content {
+        margin-bottom: 5px !important; /* Еще больше опускаем на маленьких экранах */
+    }
+    
+    .video-overlay {
+        padding-bottom: 1% !important; /* Минимальный отступ для маленьких экранов */
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+
+    /* Дополнительный отступ для логотипа на очень маленьких экранах */
+    .logo-box {
+        margin-top: 5rem; /* Еще больше отступ для очень маленьких экранов */
+    }
+
+    /* Улучшенное отображение текста логотипа на маленьких экранах */
+    .desktop-logo-text {
+        font-size: 18px; /* Немного уменьшаем размер шрифта */
+        line-height: 1.2; /* Уменьшаем межстрочный интервал */
+        word-break: break-word; /* Принудительный перенос слов */
+        overflow-wrap: break-word; /* Дополнительный перенос для длинных слов */
+        flex: 1; /* Занимает оставшееся пространство */
+        min-width: 0; /* Позволяет тексту сжиматься */
+    }
+
+    /* Размер логотипа остается как в десктопной версии */
+
+    /* Видео секция */
+    .video-section {
+        padding: 20px 0;
+    }
+    
+
+    .donate-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        margin-top: 12px;
+    }
+
+    /* О нас / Миссия */
+    .about-card, .mission-card {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    .about-card__title, .mission-card__title {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+    .about-card__content p, .mission-card__content p {
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     /* Волонтерская секция */
     .volunteer-section {
-        padding: 40px 0;
+        padding: 25px 0;
+        margin-bottom: 1.5rem;
     }
 
     .volunteer-pattern {
-        width: 300px; /* Еще уменьшаем размер узора для маленьких экранов */
+        width: 150px;
+        left: calc(50% - 75px);
+        top: -10px;
+        opacity: 0.6;
     }
 
     .volunteer-content {
-        gap: 1.5rem;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem;
+        padding: 0 5px;
+        align-items: center;
+        text-align: center;
     }
 
     .volunteer-image-circle {
-        width: 200px; /* Уменьшаем картинку еще больше */
-        height: 200px;
+        width: 140px;
+        height: 140px;
+        border: 2px solid #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        order: 1;
+    }
+
+    .volunteer-text {
+        padding: 15px 10px;
+        margin: 0 5px;
+        border-radius: 12px;
+        background-color: rgba(0, 0, 0, 0.75);
+        order: 2;
     }
 
     .volunteer-text h2 {
-        font-size: 1.8rem; /* Еще меньше размер заголовка */
-        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.2;
     }
 
     .volunteer-text p {
-        font-size: 1.1rem; /* Меньше размер текста */
+        font-size: 0.95rem;
+        line-height: 1.4;
         margin-bottom: 15px;
     }
 
     .volunteer-btn {
-        padding: 10px 25px; /* Уменьшаем кнопку для маленьких экранов */
-        font-size: 0.9rem;
+        padding: 10px 18px;
+        font-size: 0.85rem;
+        border-radius: 25px;
+        width: auto;
+        min-width: 140px;
+    }
+
+    /* Календарь событий */
+    .events-calendar {
+        padding: 25px 0 40px 0;
+        margin: 1.5rem 0;
+    }
+
+    .events-calendar .section-title {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+    .cards-grid {
+        gap: 15px;
+        padding: 0 5px;
+    }
+
+    .card {
+        border-radius: 15px;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .card-title {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .card-description {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .card > *:not(img) {
+        padding: 0 15px;
+    }
+
+    .card > *:last-child {
+        padding-bottom: 15px;
+    }
+
+    .card-stats {
+        padding: 12px 15px 8px !important;
+    }
+
+    .stat-badge {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
+    /* Прошедшие мероприятия */
+    .past-events {
+        padding: 40px 0;
+    }
+
+    .section-header {
+        margin-bottom: 25px;
+    }
+
+    .archive-link {
+        font-size: 14px;
+    }
+
+    /* Руководство */
+    .leadership-section {
+        padding: 30px 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .leadership-section .section-title {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+    .leadership-grid {
+        gap: 25px;
+        padding: 0 5px;
+    }
+
+    .leader-card {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    .leader-card img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 12px;
+    }
+
+    .leader-card h4 {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+
+    .leader-card p {
+        font-size: 0.8rem;
+    }
+
+    .leader-card .bio {
+        margin: 10px 12px 12px;
+        font-size: 12px;
+        line-height: 1.3;
+    }
+
+    .contact-info {
+        font-size: 0.4rem;
+        margin-top: 6px;
     }
 
     .leadership-section .decorative-element {
-        position: absolute;
-        top: -30px; /* Элемент выходит из верхней части карточки */
-        right: -30px; /* Элемент выходит из правой стороны */
-        width: 90px; /* Размер элемента декора */
-        height: 90px;
-        z-index: 10;
-        box-shadow: none;
-        border: none;
-        outline: none;
+        top: -20px;
+        right: -20px;
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Спонсоры */
+    .sponsors {
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .sponsors .container {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+
+    .sponsors-tittle {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+    .sponsors-logos {
+        gap: 1.5rem;
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .sponsors-logos img {
+        max-height: 50px;
+    }
+
+    .contract-link {
+        font-size: 12px;
+        margin-top: 6px;
     }
 }
+
+/* ================= БОЛЬШИЕ ЭКРАНЫ (1200px+) ================= */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 40px;
+    }
+
+    .about-mission__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .leadership-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+        max-width: 1000px;
+    }
+
+    .volunteer-content {
+        gap: 5rem;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .volunteer-image-circle {
+        width: 400px;
+        height: 400px;
+        margin-left: 3rem;
+    }
+
+    .volunteer-text {
+        margin-right: 3rem;
+        padding: 35px;
+    }
+
+    .volunteer-text p {
+        font-size: 1.6rem;
+        line-height: 1.8;
+    }
+
+    .volunteer-pattern {
+        width: 400px;
+        left: calc(50% - 200px);
+        top: -30px;
+        opacity: 0.9;
+    }
 }
