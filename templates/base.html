@@ -15,6 +15,7 @@
         <!-- HEADER - Единый для всех страниц -->
         <header class="header">
             <div class="container">
+                
                 <div class="header-top">
                     <div class="logo-box">
                         <a href="{% url 'main_page' %}" class="logo-link">
@@ -37,21 +38,31 @@
                             </a>
                         </div>
                     </div>
+                    
+                    <!-- Иконка меню для мобильных устройств -->
+                    <div class="mobile-menu-toggle">
+                        <button class="menu-toggle-btn" id="menu-toggle">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                    </div>
+                    
                     <div class="social-buttons">
-                        <div class="menu-icon" id="menu-icon">
-                          <i class="fa-solid fa-bars"></i>
-                        </div>
+                        <!-- Социальные кнопки можно добавить здесь в будущем -->
                     </div>
                 </div>
+        <!-- Адаптивное меню -->
         <nav class="nav" id="nav-links">
+            <a href="{% url 'main_page' %}">ГЛАВНАЯ</a>
             <a href="{% url 'about' %}">О ФОНДЕ</a>
-                    <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
-                    <a href="{% url 'media' %}">СМИ О НАС</a>
-                    <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
-                    <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
-                    <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
-                    <a href="#contacts">КОНТАКТЫ</a>
-                </nav>
+            <a href="{% url 'event' %}">МЕРОПРИЯТИЯ</a>
+            <a href="{% url 'media' %}">СМИ О НАС</a>
+            <a href="{% url 'projects' %}">ПРОЕКТЫ</a>
+            <a href="{% url 'help' %}">ПОМОЩЬ ФОНДУ</a>
+            <a href="{% url 'interesting' %}">ИНТЕРЕСНОЕ</a>
+            <a href="#contacts">КОНТАКТЫ</a>
+        </nav>
             </div>
         </header>
 

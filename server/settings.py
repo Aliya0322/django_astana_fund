@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-dev-key-change-in-production")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
+DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -64,8 +64,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',  # Для корректной работы в development
 ]
+
+# Добавляем WhiteNoise в зависимости от режима
+if DEBUG:
+    INSTALLED_APPS.append('whitenoise.runserver_nostatic')  # Для разработки
+else:
+    INSTALLED_APPS.append('whitenoise')  # Для production
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -201,19 +206,32 @@ STATICFILES_DIRS = [
 ]
 
 # WhiteNoise configuration for static files
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        # Используем обычное хранилище без сжатия для разработки
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
-
-# WhiteNoise settings - работает напрямую с файлами без манифеста
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = True if DEBUG else False
+if DEBUG:
+    # Для разработки используем обычное хранилище
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+    # WhiteNoise settings для разработки
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
+else:
+    # Для production используем сжатое хранилище
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+    # WhiteNoise settings для production
+    WHITENOISE_USE_FINDERS = False
+    WHITENOISE_AUTOREFRESH = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -1,0 +1,22 @@
+# Environment variables for Render.com deployment
+# Copy this file and rename to .env, then fill in your actual values
+
+# Django settings
+DJANGO_SECRET_KEY=your-secret-key-here
+DJANGO_DEBUG=False
+
+# Database (Render.com will provide DATABASE_URL automatically for PostgreSQL)
+# If you want to use a different database, uncomment and configure:
+# DATABASE_URL=postgresql://user:password@host:port/database
+
+# Email settings (optional)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@gmail.com
+EMAIL_HOST_PASSWORD=your-app-password
+DEFAULT_FROM_EMAIL=your-email@gmail.com
+CONTACT_EMAIL=your-email@gmail.com
+
+# Render.com specific
+RENDER_EXTERNAL_HOSTNAME=your-app-name.onrender.com

@@ -534,3 +534,44 @@ html {
         font-size: 13px;
     }
 }
+
+/* Медиа-запрос для больших экранов - убираем ограничение ширины */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 40px;
+    }
+}
+
+/* ================= МОБИЛЬНОЕ МЕНЮ - ПРИОРИТЕТ ================= */
+/* Убеждаемся что мобильное меню отображается поверх всех элементов */
+@media (max-width: 768px) {
+    .mobile-nav {
+        z-index: 999999999 !important;
+    }
+    
+    .mobile-nav.active {
+        z-index: 999999999 !important;
+    }
+    
+    .mobile-menu-icon {
+        z-index: 999999999 !important;
+    }
+    
+    .mobile-menu-top {
+        z-index: 999999999 !important;
+    }
+    
+    /* Опускаем модальные окна ниже мобильного меню */
+    .modal {
+        z-index: 999999998 !important;
+    }
+    
+    /* Опускаем все карточки и кнопки ниже мобильного меню */
+    .resource-card,
+    .tab-button,
+    .play-overlay,
+    .modal-content {
+        z-index: 1 !important;
+    }
+}
