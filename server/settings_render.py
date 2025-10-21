@@ -13,6 +13,10 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Ensure we're using absolute paths for Render.com
+import tempfile
+TEMP_DIR = tempfile.gettempdir()
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
@@ -136,9 +140,9 @@ USE_TZ = True
 
 # Static files configuration for Render.com
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # WhiteNoise configuration for static files
@@ -147,17 +151,17 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.StaticFilesStorage",
     },
 }
 
 # WhiteNoise settings
-WHITENOISE_USE_FINDERS = False  # Отключаем для CompressedManifestStaticFilesStorage
+WHITENOISE_USE_FINDERS = True  # Включаем для StaticFilesStorage
 WHITENOISE_AUTOREFRESH = False  # Отключаем для production
 
-# Media files configuration
+# Media files configuration - use temp directory for Render.com
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(TEMP_DIR, 'media')
 
 # Security settings for production
 SECURE_BROWSER_XSS_FILTER = True
